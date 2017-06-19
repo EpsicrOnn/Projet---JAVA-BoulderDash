@@ -10,11 +10,11 @@ public class Sprite {
 
 	private Image image;
 	private String imageName;
-	private char consoleImage;
+	private int consoleImage;
 	private boolean imageLoaded;
 
-	public Sprite(final char character, final String imageName) {
-		this.setConsoleImage(character);
+	public Sprite(final int i, final String imageName) {
+		this.setConsoleImage(i);
 		this.setImageName(imageName);
 	}
 
@@ -30,7 +30,7 @@ public class Sprite {
 		this.setImage(ImageIO.read(new File("images/" + this.getImageName())));
 	}
 
-	public final char getConsoleImage() {
+	public final int getConsoleImage() {
 		return this.consoleImage;
 	}
 
@@ -38,8 +38,8 @@ public class Sprite {
 		this.image = image;
 	}
 
-	private void setConsoleImage(final char consoleImage) {
-		this.consoleImage = consoleImage;
+	private void setConsoleImage(final int i) {
+		this.consoleImage = i;
 	}
 
 	public final String getImageName() {
