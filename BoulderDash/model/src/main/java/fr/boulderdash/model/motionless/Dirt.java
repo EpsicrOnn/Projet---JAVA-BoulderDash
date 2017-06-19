@@ -1,6 +1,7 @@
 package fr.boulderdash.model.motionless;
 
-import fr.exia.insanevehicles.model.element.Sprite;
+import fr.boulderdash.model.Collision;
+import fr.boulderdash.model.Sprite;
 
 public class Dirt extends MotionlessElement {
 
