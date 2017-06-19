@@ -26,4 +26,13 @@ public abstract class MotionlessElementFactory {
 	public static MotionlessElement createExit() {
 		return exit;
 	}
+
+	public static MotionlessElement getFromFileSymbol(final char fileSymbol) {
+		for (final MotionlessElement motionlessElement : motionlessElements) {
+			if (motionlessElement.getSprite().getConsoleImage() == fileSymbol) {
+				return motionlessElement;
+			}
+		}
+
+	}
 }
