@@ -11,4 +11,19 @@ public abstract class MotionlessElementFactory {
 
 			wall, dirt, emptydirt, exit, };
 
+	public static MotionlessElement createWall() {
+		return wall;
+	}
+
+	public static MotionlessElement createDirt() {
+		return dirt;
+	}
+
+	public static MotionlessElement EmptyDirt() {
+		return emptydirt;
+	}
+
+	public static MotionlessElement createExit() {
+		return exit;
+	}
 }
