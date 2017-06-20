@@ -7,11 +7,12 @@ public abstract class Element implements IElement {
 	private Sprite sprite;
 	private Collision collision;
 
-	public Element(final Sprite sprite, final Collision permeability) {
+	public Element(final Sprite sprite, final Collision collision) {
 		this.setSprite(sprite);
 		this.setCollision(this.collision);
 	}
 
+	@Override
 	public final Sprite getSprite() {
 		return this.sprite;
 	}
@@ -20,6 +21,7 @@ public abstract class Element implements IElement {
 		this.sprite = sprite;
 	}
 
+	@Override
 	public final Collision getCollision() {
 		return this.collision;
 	}
@@ -28,6 +30,7 @@ public abstract class Element implements IElement {
 		this.collision = collision;
 	}
 
+	@Override
 	public final Image getImage() {
 		return this.getSprite().getImage();
 	}

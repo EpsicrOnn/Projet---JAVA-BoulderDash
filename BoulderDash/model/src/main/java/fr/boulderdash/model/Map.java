@@ -39,6 +39,7 @@ public class Map extends Observable implements IMap {
 		buffer.close();
 	}
 
+	@Override
 	public final int getWidth() {
 		return this.width;
 	}
@@ -47,6 +48,7 @@ public class Map extends Observable implements IMap {
 		this.width = width;
 	}
 
+	@Override
 	public final int getHeight() {
 		return this.height;
 	}
@@ -63,11 +65,13 @@ public class Map extends Observable implements IMap {
 		this.onTheMap[x][y] = element;
 	}
 
+	@Override
 	public final void setMobileHasChanged() {
 		this.setChanged();
 		this.notifyObservers();
 	}
 
+	@Override
 	public Observable getObservable() {
 		return this;
 	}

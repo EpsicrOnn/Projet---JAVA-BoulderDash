@@ -9,10 +9,10 @@ import fr.boulderdash.model.Sprite;
 
 public abstract class Mobile extends Element implements IMobile {
 
-	private final Point position;
-	private final Boolean alive = true;
+	private final Direction direction;
+	private Point position;
+	private Boolean alive = true;
 	private IMap map;
-	private IBoard board;
 
 	Mobile(final Sprite sprite, final IMap map, final Collision collision) {
 		super(sprite, collision);
@@ -26,26 +26,50 @@ public abstract class Mobile extends Element implements IMobile {
 		this.setY(y);
 	}
 
+	public void move() {
+		switch (this.direction) {
+		case UP:
+			this.moveUp();
+			break;
+		case RIGHT:
+			this.moveRight();
+			break;
+		case DOWN:
+			this.moveDown();
+			break;
+		case LEFT:
+			this.moveLeft();
+			break;
+		default:
+			break;
+		}
+	}
+
+	@Override
 	public void moveUp() {
 		this.setY(this.getY() - 1);
 		this.setHasMoved();
 	}
 
+	@Override
 	public void moveLeft() {
 		this.setX(this.getX() - 1);
 		this.setHasMoved();
 	}
 
+	@Override
 	public void moveDown() {
 		this.setY(this.getY() + 1);
 		this.setHasMoved();
 	}
 
+	@Override
 	public void moveRight() {
 		this.setX(this.getX() + 1);
 		this.setHasMoved();
 	}
 
+	@Override
 	public void doNothing() {
 		this.setHasMoved();
 	}
@@ -54,6 +78,7 @@ public abstract class Mobile extends Element implements IMobile {
 		this.getMap().setMobileHasChanged();
 	}
 
+	@Override
 	public final int getX() {
 		return this.getPosition().x;
 	}
@@ -65,6 +90,7 @@ public abstract class Mobile extends Element implements IMobile {
 		}
 	}
 
+	@Override
 	public final int getY() {
 		return this.getPosition().y;
 	}
@@ -84,6 +110,7 @@ public abstract class Mobile extends Element implements IMobile {
 		this.map = map;
 	}
 
+	@Override
 	public Boolean isAlive() {
 		return this.alive;
 	}
@@ -93,20 +120,18 @@ public abstract class Mobile extends Element implements IMobile {
 		this.setHasMoved();
 	}
 
-	public Boolean isCrashed() {
-		return this.getMap().getOnTheRoadXY(this.getX(), this.getY()).getCollision() == Collision.BLOCKING;
+	@Override
+	public Boolean isKilled() {
+		return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getCollision() == Collision.BLOCKING;
 	}
 
+	@Override
 	public Point getPosition() {
 		return this.position;
 	}
 
 	public void setPosition(final Point position) {
 		this.position = position;
-	}
-
-	protected IBoard getBoard() {
-		return this.board;
 	}
 
 }
