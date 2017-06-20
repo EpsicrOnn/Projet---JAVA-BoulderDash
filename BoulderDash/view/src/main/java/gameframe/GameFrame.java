@@ -5,15 +5,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
 import javax.swing.JFrame;
-
-import jpu2016.gameframe.GamePanel;
+import gameframe.GamePanel;
+import gameframe.IEventPerformer;
+import view.BoulderDashView;
+import gameframe.IGraphicsBuilder;
 
 public class GameFrame extends JFrame implements KeyListener {
+	private static final long serialVersionUID = 1L;
+	private final IEventPerformer eventPerformer;
 	private final IEventPerformer keyEvent;
 	
 	public GameFrame(final String title, final IEventPerformer performer, final IGraphicsBuilder graphicBuilder, final Observable observable) {
-		throws HeadlessException;
-		{
+		throws HeadlessException; {
 	this.eventPerformer = eventPerformer;
 
 	this.setTitle(title);
@@ -22,14 +25,15 @@ public class GameFrame extends JFrame implements KeyListener {
 	this.addKeyListener(this);
 	this.setVisible(true);
 
-	final GamePanel gamePanel = new GamePanel(graphicsBuilder);
+	final GamePanel gamePanel = new GamePanel(graphicBuilder);
 	this.setContentPane(gamePanel);
-	this.setSize(graphicsBuilder.getGlobalWidth() + this.getInsets().left + this.getInsets().right,
-			graphicsBuilder.getGlobalHeight() + this.getInsets().top + this.getInsets().bottom);
+	this.setSize(graphicBuilder.getGlobalWidth() + this.getInsets().left + this.getInsets().right,
+			     graphicBuilder.getGlobalHeight() + this.getInsets().top + this.getInsets().bottom);
 	this.setLocationRelativeTo(null);
 	observable.addObserver(gamePanel);
 
 	this.setVisible(true);
+		}
 	}
 	
 	public void keyPressed(final KeyEvent keyEvent) {
@@ -45,7 +49,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+
 		
 	}
 

@@ -8,7 +8,7 @@ import view.EventPerformer;
 import view.GraphicsBuilder;
 import gameframe.GameFrame;
 
-public class BoulderDashView implements IViewSystem, Runnable {
+public class BoulderDashView implements IBoulderDashView, Runnable {
 	private final GraphicsBuilder	graphicsBuilder;
 	private final EventPerformer	eventPerformer;
 	private final Observable		observable;

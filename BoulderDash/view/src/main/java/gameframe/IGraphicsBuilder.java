@@ -9,5 +9,6 @@ public interface IGraphicsBuilder {
 	
 	public int getGlobalWidth();
 	
-	public int GetGlobalHeight();
+	public int getGlobalHeight();
+
 }
