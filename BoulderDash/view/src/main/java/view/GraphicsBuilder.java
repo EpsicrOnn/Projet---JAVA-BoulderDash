@@ -3,8 +3,7 @@ package view;
 import java.awt.Graphics;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
-
-import jpu2016.dogfight.model.IMobile;
+import model.IBoulderDashMobile;
 
 class GraphicsBuilder implements IGraphicsBuilder {
 		private final IBoulderDashModel	boulderdashModel;
