@@ -11,10 +11,14 @@ public abstract class Mobile extends Element implements IMobile {
 
 	private final Direction direction;
 	private Point position;
-	private Boolean alive = true;
-	private IMap map;
+	static Boolean alive = true;
+	protected IMap map;
 
-	Mobile(final Sprite sprite, final IMap map, final Collision collision) {
+	Mobile(Sprite sprite, Collision collision) {
+		super(sprite, collision);
+	}
+
+	Mobile(Sprite sprite, IMap map, Collision collision) {
 		super(sprite, collision);
 		this.setMap(map);
 		this.position = new Point();
@@ -85,7 +89,7 @@ public abstract class Mobile extends Element implements IMobile {
 
 	public final void setX(final int x) {
 		this.getPosition().x = x;
-		if (this.isCrashed()) {
+		if (this.isKilled()) {
 			this.die();
 		}
 	}
@@ -97,7 +101,7 @@ public abstract class Mobile extends Element implements IMobile {
 
 	public final void setY(final int y) {
 		this.getPosition().y = (y + this.getMap().getHeight()) % this.getMap().getHeight();
-		if (this.isCrashed()) {
+		if (this.isKilled()) {
 			this.die();
 		}
 	}
@@ -106,7 +110,7 @@ public abstract class Mobile extends Element implements IMobile {
 		return this.map;
 	}
 
-	private void setRoad(final IMap map) {
+	private void setMap(final IMap map) {
 		this.map = map;
 	}
 

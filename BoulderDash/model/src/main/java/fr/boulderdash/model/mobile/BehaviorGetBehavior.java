@@ -1,5 +1,6 @@
 package fr.boulderdash.model.mobile;
 
-public class BehaviorGetBehavior {
+public interface BehaviorGetBehavior {
 
+	void getBehavior();
 }
