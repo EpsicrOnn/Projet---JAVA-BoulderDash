@@ -6,7 +6,7 @@ import fr.boulderdash.model.Collision;
 import fr.boulderdash.model.IMap;
 import fr.boulderdash.model.Sprite;
 
-public class Player {
+public class Player extends Mobile {
 
 	private static final Sprite sprite = new Sprite(8, "DoNothing.png");
 
@@ -26,4 +26,33 @@ public class Player {
 		spriteTurnDown.loadImage();
 	}
 
+	@Override
+	public final void moveLeft() {
+		super.moveLeft();
+		this.setSprite(spriteTurnLeft);
+	}
+
+	@Override
+	public final void moveRight() {
+		super.moveLeft();
+		this.setSprite(spriteTurnRight);
+	}
+
+	@Override
+	public final void moveUp() {
+		super.moveLeft();
+		this.setSprite(spriteTurnUp);
+	}
+
+	@Override
+	public final void moveDown() {
+		super.moveLeft();
+		this.setSprite(spriteTurnDown);
+	}
+
+	public final void DoNothing() {
+		super.moveLeft();
+		this.setSprite(sprite);
+
+	}
 }

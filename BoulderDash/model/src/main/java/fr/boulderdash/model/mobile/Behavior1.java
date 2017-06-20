@@ -20,15 +20,15 @@ public class Behavior1 implements BehaviorGetBehavior {
 			case 1:
 				this.monster.moveUp();
 			case 2:
-				moveDown();
+				this.monster.moveDown();
 			case 3:
-				Monster.moveRight();
+				this.monster.moveRight();
 			case 4:
-				Monster.moveLeft();
+				this.monster.moveLeft();
 
 			}
 
-		} while (Monster.alive == true);
+		} while (this.monster.alive == true);
 	}
 
 }

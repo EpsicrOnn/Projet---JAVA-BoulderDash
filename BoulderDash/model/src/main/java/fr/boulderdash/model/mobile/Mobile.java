@@ -9,7 +9,7 @@ import fr.boulderdash.model.Sprite;
 
 public abstract class Mobile extends Element implements IMobile {
 
-	private final Direction direction;
+	private Direction direction;
 	private Point position;
 	static Boolean alive = true;
 	protected IMap map;
