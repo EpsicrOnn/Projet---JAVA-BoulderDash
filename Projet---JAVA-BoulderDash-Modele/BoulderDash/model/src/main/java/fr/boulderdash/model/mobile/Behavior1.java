@@ -32,3 +32,4 @@ public class Behavior1 implements BehaviorGetBehavior {
 	}
 
 }
+//

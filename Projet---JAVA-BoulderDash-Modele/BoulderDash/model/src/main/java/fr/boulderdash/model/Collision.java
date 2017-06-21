@@ -2,6 +2,5 @@ package fr.boulderdash.model;
 
 public enum Collision {
 
-	BLOCKING, PUSHABLE, RECOVERABLE, PENETRABLE
-
+	BLOCKING, PUSHABLE, RECOVERABLE, PENETRABLE, Test, Riadjy,
 }
