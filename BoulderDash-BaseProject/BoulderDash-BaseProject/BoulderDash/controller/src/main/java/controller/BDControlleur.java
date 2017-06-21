@@ -7,15 +7,17 @@ import model.IModel;
 import view.IView;
 
 /**
- * <h1>The Class ControllerFacade provides a facade of the Controller
- * component.</h1>
- *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
+ * The Class BDControlleur.
  */
 public class BDControlleur implements IController {
+
+	/** The view system. */
 	private IBoulderDashView	viewSystem;
+
+	/** The stack order. */
 	private EOrder				stackOrder;
+
+	/** The time sleep. */
 	private static int			TIME_SLEEP	= 30;
 	/** The view. */
 	private final IView			view;
@@ -40,8 +42,7 @@ public class BDControlleur implements IController {
 	/**
 	 * Start.
 	 *
-	 * @throws SQLException
-	 *             the SQL exception
+	 * @return the view
 	 */
 	/*
 	 * public void start() throws SQLException {
@@ -76,18 +77,38 @@ public class BDControlleur implements IController {
 		return this.model;
 	}
 
+	/**
+	 * Order perform.
+	 *
+	 * @param userOrder
+	 *            the user order
+	 */
 	public void orderPerform(final EOrder userOrder) {
 		this.setStackOrder(userOrder);
 	}
 
+	/**
+	 * Sets the stack order.
+	 *
+	 * @param stackOrder
+	 *            the new stack order
+	 */
 	private void setStackOrder(final EOrder stackOrder) {
 		this.stackOrder = stackOrder;
 	}
 
+	/**
+	 * Gets the stack order.
+	 *
+	 * @return the stack order
+	 */
 	private EOrder getStackOrder() {
 		return this.stackOrder;
 	}
 
+	/**
+	 * Clear stack order.
+	 */
 	private void clearStackOrder() {
 		this.stackOrder = EOrder.NOP;
 	}
@@ -105,30 +126,44 @@ public class BDControlleur implements IController {
 	 * } } } }
 	 */
 
+	// this.getView().displayMessage(this.getModel().getExampleById(1).toString());
+
+	// this.getView().displayMessage(this.getModel().getExampleByName("Example
+	// 2").toString());
+
+	// final List<Example> examples = this.getModel().getAllExamples();
+	// final StringBuilder message = new StringBuilder();
+	// a.append(" bar);
+	// for (final Example example : examples) {
+	// message.append(example);
+	// message.append('\n');
+	// }
+	/**
+	 * Play.
+	 */
+	// this.getView().displayMessage(message.toString());
 	public void play() {
 
 		this.gameLoop();
-
-		// this.getView().displayMessage(this.getModel().getExampleById(1).toString());
-
-		// this.getView().displayMessage(this.getModel().getExampleByName("Example
-		// 2").toString());
-
-		// final List<Example> examples = this.getModel().getAllExamples();
-		// final StringBuilder message = new StringBuilder();
-		// a.append(" bar);
-		// for (final Example example : examples) {
-		// message.append(example);
-		// message.append('\n');
-		// }
-		// this.getView().displayMessage(message.toString());
 		this.viewSystem.closeAll();
 	}
 
+	/**
+	 * Sets the BD view.
+	 *
+	 * @param viewSystem
+	 *            the new BD view
+	 */
 	public void setBDView(final IBoulderDashView viewSystem) {
 		this.viewSystem = viewSystem;
 	}
 
+	/**
+	 * Game loop.
+	 *
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
 	private void gameLoop() throws SQLException {
 		while (!this.getModel().getMobile.isAlive) {
 			try {
@@ -155,7 +190,7 @@ public class BDControlleur implements IController {
 				break;
 			}
 			this.clearStackOrder();
-			// view.Scrolling();
+			this.view.Scrolling();
 			this.view.notify();
 
 		}
