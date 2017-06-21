@@ -7,12 +7,32 @@ import view.EventPerformer;
 import view.GraphicsBuilder;
 import gameframe.GameFrame;
 
+/**
+ * <h1>The Class BoulderDashView</h1>
+ * @author Vincent VALLET
+ * @about This class will manage the View. 
+ */
 public class BoulderDashView implements IBoulderDashView, Runnable {
+	
+	/** The graphics builder. */
 	private final GraphicsBuilder	graphicsBuilder;
+	
+	/** The event performer. */
 	private final EventPerformer	eventPerformer;
+	
+	/** The observable. */
 	private final Observable		observable;
+	
+	/** The game frame. */
 	private GameFrame				gameFrame;
 
+	/**
+	 * Instantiates a new boulder dash view.
+	 *
+	 * @param orderPerformer the order performer
+	 * @param boulderdashModel the boulderdash model
+	 * @param observable the observable
+	 */
 	public BoulderDashView(final IOrderPerformer orderPerformer, final IBoulderDashModel boulderdashModel, final Observable observable) {
 		this.observable = observable;
 		this.graphicsBuilder = new GraphicsBuilder(boulderdashModel);

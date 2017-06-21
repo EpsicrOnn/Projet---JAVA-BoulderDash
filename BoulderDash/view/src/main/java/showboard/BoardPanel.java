@@ -16,6 +16,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+// TODO: Auto-generated Javadoc
 /**
  * <h1>The Class BoardPanel.</h1>
  * <p>

@@ -5,13 +5,30 @@ import controller.IUserOrder;
 import controller.Order;
 import controller.UserOrder;
 
+/**
+ * <h1>The Class EventPerformer</h1>
+ * @author Vincent VALLET
+ * @about This class will give order to the Controller to control the character.
+ */
 class EventPerformer implements IEventPerformer {
+	
+	/** The order performer. */
 	private final IOrderPerformer orderPerformer;
 
+	/**
+	 * Instantiates a new event performer.
+	 *
+	 * @param orderPerformer the order performer
+	 */
 	public EventPerformer(final IOrderPerformer orderPerformer) {
 		this.orderPerformer = orderPerformer;
 	}
 	
+	/**
+	 * Event perform.
+	 *
+	 * @param keyCode the key code
+	 */
 	public void eventPerform(final KeyEvent keyCode) {
 		final IUserOrder userOrder = this.keyCodeToUserOrder(keyCode.getKeyCode());
 		if (userOrder != null) {
@@ -19,6 +36,12 @@ class EventPerformer implements IEventPerformer {
 		}
 	}
 	
+	/**
+	 * Key code to user order.
+	 *
+	 * @param keyCode the key code
+	 * @return the user order
+	 */
 	private UserOrder keyCodeToUserOrder(final int keyCode) {
 		IUserOrder userOrder;
 		switch (keyCode) {

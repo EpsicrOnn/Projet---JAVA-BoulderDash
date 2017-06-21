@@ -3,10 +3,10 @@ package view;
 import javax.swing.JOptionPane;
 
 /**
- * <h1>The Class ViewFacade provides a facade of the View component.</h1>
+ * <h1>The Class ViewFacade</h1>
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
+ * @author Vincent VALLET
+ * @about This class will provides a facade of the View component.
  */
 public class ViewFacade implements IView {
 
@@ -16,11 +16,7 @@ public class ViewFacade implements IView {
     public ViewFacade() {
         super();
     }
-
-    /*
-     * (non-Javadoc)
-     * @see view.IView#displayMessage(java.lang.String)
-     */
+    
     @Override
     public final void displayMessage(final String message) {
         JOptionPane.showMessageDialog(null, message);
