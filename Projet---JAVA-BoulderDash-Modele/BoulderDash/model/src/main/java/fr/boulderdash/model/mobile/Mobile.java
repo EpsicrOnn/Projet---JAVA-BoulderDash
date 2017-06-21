@@ -126,7 +126,7 @@ public abstract class Mobile extends Element implements IMobile {
 
 	@Override
 	public Boolean isKilled() {
-		return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getCollision() == Collision.BLOCKING;
+		return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getCollision() == Collision.KILLING;
 	}
 
 	@Override

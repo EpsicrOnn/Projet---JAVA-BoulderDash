@@ -34,7 +34,7 @@ public class Player extends Mobile {
 
 	@Override
 	public final void moveRight() {
-		super.moveLeft();
+		super.moveRight();
 		this.setSprite(spriteTurnRight);
 	}
 

@@ -7,7 +7,7 @@ public class EmptyDirt extends MotionlessElement {
 
 	private static final Sprite SPRITE = new Sprite(3, "EmptyDirt.jpeg");
 
-	EmptyDirt() {
+	public EmptyDirt() {
 		super(SPRITE, Collision.RECOVERABLE);
 	}
 
