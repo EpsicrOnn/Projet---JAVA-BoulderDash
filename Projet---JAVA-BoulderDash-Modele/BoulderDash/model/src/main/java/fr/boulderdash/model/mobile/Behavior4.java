@@ -11,6 +11,8 @@ public class Behavior4 implements BehaviorGetBehavior {
 
 	@Override
 	public void getBehavior() {
-		this.monster.moveRight();
+		do {
+			this.monster.moveRight();
+		} while (this.monster.alive == true);
 	}
 }
