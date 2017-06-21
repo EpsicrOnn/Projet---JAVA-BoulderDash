@@ -8,9 +8,6 @@ import javax.swing.JPanel;
 import gameframe.IGraphicsBuilder;
 
 public class GamePanel extends JPanel implements Observer {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final IGraphicsBuilder	graphicsBuilder;
 

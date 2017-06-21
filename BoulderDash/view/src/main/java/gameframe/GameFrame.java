@@ -16,7 +16,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private final IEventPerformer keyEvent;
 	
 	public GameFrame(final String title, final IEventPerformer eventPerformer, final IGraphicsBuilder graphicBuilder, final Observable observable) {
-		throws HeadlessException; {
+		throw HeadlessException 
 	this.eventPerformer = eventPerformer;
 
 	this.setTitle(title);
@@ -33,7 +33,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	observable.addObserver(gamePanel);
 
 	this.setVisible(true);
-		}
+		
 	}
 	
 	public void keyPressed(final KeyEvent keyEvent) {
