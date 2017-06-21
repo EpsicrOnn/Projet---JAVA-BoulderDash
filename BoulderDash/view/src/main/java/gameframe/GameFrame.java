@@ -7,16 +7,13 @@ import java.util.Observable;
 import javax.swing.JFrame;
 import gameframe.GamePanel;
 import gameframe.IEventPerformer;
-import view.BoulderDashView;
 import gameframe.IGraphicsBuilder;
 
 public class GameFrame extends JFrame implements KeyListener {
 	private static final long serialVersionUID = 1L;
 	private final IEventPerformer eventPerformer;
-	private final IEventPerformer keyEvent;
-	
-	public GameFrame(final String title, final IEventPerformer eventPerformer, final IGraphicsBuilder graphicBuilder, final Observable observable) {
-		throw HeadlessException 
+	public GameFrame(final String title, final IEventPerformer eventPerformer, final IGraphicsBuilder graphicBuilder, final Observable observable) throws HeadlessException {
+		 
 	this.eventPerformer = eventPerformer;
 
 	this.setTitle(title);

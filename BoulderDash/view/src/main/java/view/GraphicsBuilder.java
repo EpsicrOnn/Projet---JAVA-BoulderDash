@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Graphics;
+
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
@@ -21,11 +22,11 @@ class GraphicsBuilder implements IGraphicsBuilder {
 		}
 
 		public int getGlobalWidth() {
-			return this.boulderdashModel.getArea().getWidth();
+			return this.boulderdashModel.getWidth();
 		}
 
 		public int getGlobalHeight() {
-			return this.boulderdashModel.getArea().getHeight();
+			return this.boulderdashModel.getHeight();
 		}
 
 		@Override

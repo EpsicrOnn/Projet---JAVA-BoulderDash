@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
-
 import gameframe.IGraphicsBuilder;
 
 public class GamePanel extends JPanel implements Observer {
