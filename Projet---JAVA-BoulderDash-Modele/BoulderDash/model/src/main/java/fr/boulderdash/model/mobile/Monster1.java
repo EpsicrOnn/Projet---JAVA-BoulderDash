@@ -11,7 +11,7 @@ public class Monster1 extends Physics {
 	int random = (int) (Math.random() * (this.higher - this.lower)) + this.lower;
 
 	Monster1() {
-		super(SPRITE, Collision.BLOCKING);
+		super(SPRITE, Collision.KILLING);
 		switch (this.random) {
 		case 1:
 			this.setStrategy(new Behavior1(this));

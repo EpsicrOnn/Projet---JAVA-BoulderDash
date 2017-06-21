@@ -11,7 +11,7 @@ public class Monster2 extends Physics {
 	private final static Sprite SPRITE = new Sprite(9, "Monster2.jpg");
 
 	Monster2() {
-		super(SPRITE, Collision.BLOCKING);
+		super(SPRITE, Collision.KILLING);
 		switch (this.random) {
 		case 1:
 			this.setStrategy(new Behavior3(this));
