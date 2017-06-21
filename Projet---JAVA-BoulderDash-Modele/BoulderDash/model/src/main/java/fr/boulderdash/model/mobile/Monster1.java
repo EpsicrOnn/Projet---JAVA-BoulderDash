@@ -10,21 +10,16 @@ public class Monster1 extends Monster {
 	int higher = 2;
 	int random = (int) (Math.random() * (this.higher - this.lower)) + this.lower;
 
-	public void random(){
-	switch(this.random){
-	case 1 :
-		Monster1(){
+	Monster1() {
 		super(SPRITE, Collision.BLOCKING);
-		this.setStrategy(new Behavior1(this));
-	}
-
-	case 2:
-		Monster1(){
-		super(SPRITE, Collision.BLOCKING);
-		this.setStrategy(new Behavior2(this));
-
+		switch (this.random) {
+		case 1:
+			this.setStrategy(new Behavior1(this));
+			break;
+		case 2:
+			this.setStrategy(new Behavior2(this));
+			break;
+		default:
 		}
 	}
-
-}
 }
