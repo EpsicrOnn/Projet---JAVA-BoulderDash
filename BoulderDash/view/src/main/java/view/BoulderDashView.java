@@ -1,7 +1,6 @@
 package view;
 
 import java.util.Observable;
-
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import view.EventPerformer;

@@ -3,7 +3,9 @@ package view;
 import java.awt.Graphics;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
-import model.IBoulderDashMobile;
+import java.awt.image.ImageObserver;
+import gameframe.IGraphicsBuilder;
+import model.IBoulderDashModel;
 
 class GraphicsBuilder implements IGraphicsBuilder {
 		private final IBoulderDashModel	boulderdashModel;
@@ -13,7 +15,7 @@ class GraphicsBuilder implements IGraphicsBuilder {
 		}
 		
 		public void applyModelToGraphic(final Graphics graphics, final ImageObserver observer) {
-			for (final IMobile mobile : this.dogfightModel.getMobiles()) {
+			for (final IMobile mobile : this.boulderdashModel.getMobiles()) {
 				this.drawMobile(mobile, graphics, observer);
 			}
 		}
@@ -25,3 +27,10 @@ class GraphicsBuilder implements IGraphicsBuilder {
 		public int getGlobalHeight() {
 			return this.boulderdashModel.getArea().getHeight();
 		}
+
+		@Override
+		public void applyModelToGraphic(Graphics graphics, ImageObserver observer) {
+			// TODO Auto-generated method stub
+			
+		}
+}

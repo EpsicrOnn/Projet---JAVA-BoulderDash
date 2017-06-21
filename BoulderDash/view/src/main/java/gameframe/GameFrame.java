@@ -15,7 +15,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private final IEventPerformer eventPerformer;
 	private final IEventPerformer keyEvent;
 	
-	public GameFrame(final String title, final IEventPerformer performer, final IGraphicsBuilder graphicBuilder, final Observable observable) {
+	public GameFrame(final String title, final IEventPerformer eventPerformer, final IGraphicsBuilder graphicBuilder, final Observable observable) {
 		throws HeadlessException; {
 	this.eventPerformer = eventPerformer;
 
