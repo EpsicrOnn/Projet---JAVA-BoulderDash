@@ -5,9 +5,9 @@ public class Behavior1 implements BehaviorGetBehavior {
 	int lower = 1;
 	int higher = 4;
 	int random = (int) (Math.random() * (this.higher - this.lower)) + this.lower;
-	Monster monster;
+	Physics monster;
 
-	public Behavior1(Monster M) {
+	public Behavior1(Physics M) {
 		this.monster = M;
 
 	}

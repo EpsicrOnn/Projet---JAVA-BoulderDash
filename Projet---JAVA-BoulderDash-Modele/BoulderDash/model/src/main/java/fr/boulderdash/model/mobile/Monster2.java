@@ -3,7 +3,7 @@ package fr.boulderdash.model.mobile;
 import fr.boulderdash.model.Collision;
 import fr.boulderdash.model.Sprite;
 
-public class Monster2 extends Monster {
+public class Monster2 extends Physics {
 	int lower = 1;
 	int higher = 2;
 	int random = (int) (Math.random() * (this.higher - this.lower)) + this.lower;

@@ -2,9 +2,9 @@ package fr.boulderdash.model.mobile;
 
 public class Behavior4 implements BehaviorGetBehavior {
 
-	Monster monster;
+	Physics monster;
 
-	public Behavior4(Monster M) {
+	public Behavior4(Physics M) {
 		this.monster = M;
 
 	}

@@ -3,7 +3,7 @@ package fr.boulderdash.model.mobile;
 import fr.boulderdash.model.Collision;
 import fr.boulderdash.model.Sprite;
 
-public class Monster1 extends Monster {
+public class Monster1 extends Physics {
 
 	private final static Sprite SPRITE = new Sprite(6, "Monster1.jpeg");
 	int lower = 1;
