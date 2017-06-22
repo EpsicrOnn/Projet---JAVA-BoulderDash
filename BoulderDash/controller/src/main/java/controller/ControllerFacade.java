@@ -8,15 +8,12 @@ import model.IModel;
 import view.IView;
 
 /**
-
  * <h1>The Class ControllerFacade provides a facade of the Controller component.</h1>
-
  *
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
 public class ControllerFacade implements IController {
-
 
     /** The view. */
     private final IView  view;
@@ -44,8 +41,7 @@ public class ControllerFacade implements IController {
      * @throws SQLException
      *             the SQL exception
      */
-    public void start() 
-    		throws SQLException {
+    public void start() throws SQLException {
         this.getView().displayMessage(this.getModel().getExampleById(1).toString());
 
         this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
@@ -77,6 +73,4 @@ public class ControllerFacade implements IController {
     public IModel getModel() {
         return this.model;
     }
-
-
 }
