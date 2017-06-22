@@ -3,7 +3,9 @@ package main;
 import java.sql.SQLException;
 
 import controller.ControllerFacade;
-import fr.boulderdash.model.ModelFacade;
+
+import model.ModelFacade;
+
 import view.ViewFacade;
 
 /**
