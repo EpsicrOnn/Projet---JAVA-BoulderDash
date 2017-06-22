@@ -138,10 +138,12 @@ public class BDControlleur implements IController {
 	// message.append(example);
 	// message.append('\n');
 	// }
+
+	// this.getView().displayMessage(message.toString());
 	/**
 	 * Play.
 	 */
-	// this.getView().displayMessage(message.toString());
+
 	public void play() {
 
 		this.gameLoop();
@@ -196,4 +198,17 @@ public class BDControlleur implements IController {
 		}
 		this.viewSystem.displayMessage("Game Over !");
 	}
+
+	@Override
+	public void IOrder() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void IOrderPerformer() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

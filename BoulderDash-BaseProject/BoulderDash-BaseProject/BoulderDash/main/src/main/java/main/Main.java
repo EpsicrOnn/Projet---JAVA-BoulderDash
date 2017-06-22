@@ -1,6 +1,6 @@
 package main;
 
-import java.sql.SQLException;
+import java.util.Map;
 
 import controller.BDControlleur;
 import model.ModelFacade;
@@ -14,20 +14,18 @@ import view.ViewFacade;
  */
 public abstract class Main {
 
-    /**
-     * The main method.
-     *
-     * @param args
-     *            the arguments
-     */
-    public static void main(final String[] args) {
-        final BDControlleur controller = new BDControlleur(new ViewFacade(), new ModelFacade());
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
+	public static void main(final String[] args) {
+		final BDControlleur controller = new BDControlleur(new ViewFacade(), new ModelFacade());
+		final Map map = new Map();
 
-        try {
-            controller.start();
-        } catch (final SQLException exception) {
-            exception.printStackTrace();
-        }
-    }
+		map.loadFile("map1.txt");
+		controller.play();
+	}
 
 }
