@@ -3,7 +3,7 @@ package fr.boulderdash.model.mobile;
 public class Behavior1 implements BehaviorGetBehavior {
 
 	int lower = 1;
-	int higher = 4;
+	int higher = 5;
 	int random = (int) (Math.random() * (this.higher - this.lower)) + this.lower;
 	Physics monster;
 
