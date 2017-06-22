@@ -9,7 +9,7 @@ import view.IView;
 /**
  * The Class BDControlleur.
  */
-public class BDControlleur implements IController {
+public class BDController implements IController {
 
 	/** The view system. */
 	private IBoulderDashView	viewSystem;
@@ -33,7 +33,7 @@ public class BDControlleur implements IController {
 	 * @param model
 	 *            the model
 	 */
-	public BDControlleur(final IView view, final IModel model) {
+	public BDController(final IView view, final IModel model) {
 		super();
 		this.view = view;
 		this.model = model;
@@ -102,7 +102,7 @@ public class BDControlleur implements IController {
 	 *
 	 * @return the stack order
 	 */
-	private EOrder getStackOrder() {
+	public EOrder getStackOrder() {
 		return this.stackOrder;
 	}
 

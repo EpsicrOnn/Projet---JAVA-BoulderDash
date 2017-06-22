@@ -2,7 +2,7 @@ package main;
 
 import java.util.Map;
 
-import controller.BDControlleur;
+import controller.BDController;
 import model.ModelFacade;
 import view.ViewFacade;
 
@@ -21,8 +21,8 @@ public abstract class Main {
 	 *            the arguments
 	 */
 	public static void main(final String[] args) {
-		final BDControlleur controller = new BDControlleur(new ViewFacade(), new ModelFacade());
-		final Map map = new Map();
+		final BDController controller = new BDController(new ViewFacade(), new ModelFacade());
+		final IMap map = new Map();
 
 		map.loadFile("map1.txt");
 		controller.play();
