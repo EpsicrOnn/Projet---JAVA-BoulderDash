@@ -1,8 +1,14 @@
 package main;
 
+
 import java.util.Map;
 
 import controller.BDController;
+
+import java.sql.SQLException;
+
+import controller.ControllerFacade;
+
 import model.ModelFacade;
 import view.ViewFacade;
 
@@ -13,6 +19,7 @@ import view.ViewFacade;
  * @version 1.0
  */
 public abstract class Main {
+
 
 	/**
 	 * The main method.
@@ -27,5 +34,6 @@ public abstract class Main {
 		map.loadFile("map1.txt");
 		controller.play();
 	}
+
 
 }
