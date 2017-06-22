@@ -4,7 +4,7 @@ package controller;
 /**
  * The Class UserOrder.
  */
-public class UserOrder implements IOrder {
+public class UserOrder implements IUserOrder {
 	
 	/** The player. */
 	private final int		player;

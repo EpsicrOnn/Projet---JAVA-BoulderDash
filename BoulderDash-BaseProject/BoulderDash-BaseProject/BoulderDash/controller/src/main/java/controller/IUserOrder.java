@@ -4,7 +4,7 @@ package controller;
 /**
  * The Interface IOrder.
  */
-public interface IOrder {
+public interface IUserOrder {
 	
 	/**
 	 * Gets the order.

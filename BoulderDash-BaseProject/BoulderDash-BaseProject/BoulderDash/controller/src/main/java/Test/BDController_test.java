@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import controller.BDController;
+import controller.BoulderDashController;
 
 public class BDController_test {
 
@@ -32,7 +32,7 @@ public class BDController_test {
 
 	@Test
 	public void testDirection() {
-		final BDController controller = new BDController(null, null);
+		final BoulderDashController controller = new BoulderDashController(null, null);
 		final String Direction = "UP";
 		switch (Direction) {
 		case "UP":

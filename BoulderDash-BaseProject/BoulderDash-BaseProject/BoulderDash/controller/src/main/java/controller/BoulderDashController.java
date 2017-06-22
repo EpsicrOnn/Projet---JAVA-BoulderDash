@@ -9,7 +9,7 @@ import view.IView;
 /**
  * The Class BDControlleur.
  */
-public class BDController implements IController {
+public class BoulderDashController implements IController {
 
 	/** The view system. */
 	private IBoulderDashView	viewSystem;
@@ -33,7 +33,7 @@ public class BDController implements IController {
 	 * @param model
 	 *            the model
 	 */
-	public BDController(final IView view, final IModel model) {
+	public BoulderDashController(final IView view, final IModel model) {
 		super();
 		this.view = view;
 		this.model = model;
