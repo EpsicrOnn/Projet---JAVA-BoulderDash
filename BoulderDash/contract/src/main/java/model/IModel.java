@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface IModel {
 
+
     /**
      * Gets the example by id.
      *
@@ -41,4 +42,5 @@ public interface IModel {
      *             the SQL exception
      */
     List<Example> getAllExamples() throws SQLException;
+
 }
