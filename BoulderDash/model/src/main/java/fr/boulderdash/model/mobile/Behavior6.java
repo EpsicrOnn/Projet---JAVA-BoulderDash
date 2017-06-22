@@ -1,4 +1,4 @@
-spackage fr.boulderdash.model.mobile;
+package fr.boulderdash.model.mobile;
 
 public class Behavior6 implements BehaviorGetBehavior {
 
