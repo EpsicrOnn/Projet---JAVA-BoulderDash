@@ -2,7 +2,7 @@ package view;
 
 import java.awt.event.KeyEvent;
 
-import controller.IController.IOrderPerformer;
+import BoulderDash_controller.controller.IOrderPerformer;
 import controller.IUserOrder;
 import controller.Order;
 import controller.UserOrder;
@@ -10,7 +10,7 @@ import gameframe.IEventPerformer;
 
 /**
  * <h1>The Class EventPerformer</h1>
- * 
+ *
  * @author Vincent VALLET
  * @about This class will give order to the Controller to control the character.
  */
@@ -35,6 +35,7 @@ public class EventPerformer implements IEventPerformer {
 	 * @param keyCode
 	 *            the key code
 	 */
+	@Override
 	public void eventPerform(final KeyEvent keyCode) {
 		final IUserOrder userOrder = this.keyCodeToUserOrder(keyCode.getKeyCode());
 		if (userOrder != null) {

@@ -33,18 +33,18 @@ public abstract class Main implements IBoulderDashModel, IBoulderDashView, IBoul
 	 *            the arguments
 	 */
 	public static void main(final String[] args) throws IOException, InterruptedException {
-		final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+		final ControllerFacade controllerf = new ControllerFacade(new ViewFacade(), new ModelFacade());
 
 		final IBoulderDashModel model = new BoulderDashModel("map1.txt", startX, startY);
 		final IBoulderDashView view = new BoulderDashView(model.getMap(), model.getPlayer());
-		final IBoulderDashController controller1 = new BoulderDashController(view, model);
-		view.setOrderPerformer(controller1.getOrderPerformer());
+		final IBoulderDashController controller = new BoulderDashController(view, model);
+		view.setOrderPerformer(controller.getOrderPerformer());
 
 		try {
-			controller1.start();
+			controller.start();
 		} catch (final SQLException exception) {
 			exception.printStackTrace();
 		}
-		controller1.play();
+		controller.play();
 	}
 }
