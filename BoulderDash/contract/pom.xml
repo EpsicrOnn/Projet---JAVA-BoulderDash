@@ -7,4 +7,21 @@
   </parent>
   <artifactId>contract</artifactId>
   <name>boulderdash.contract</name>
+  <dependencies>
+  	<dependency>
+  		<groupId>fr.exia</groupId>
+  		<artifactId>controller</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>fr.exia</groupId>
+  		<artifactId>view</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>fr.exia</groupId>
+  		<artifactId>model</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
