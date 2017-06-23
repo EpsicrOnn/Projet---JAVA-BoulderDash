@@ -1,11 +1,15 @@
 package main;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
+import controller.BoulderDashController;
 import controller.ControllerFacade;
-
+import fr.boulderdash.model.BoulderDashModel;
+import fr.boulderdash.model.IBoulderDashModel;
 import model.ModelFacade;
-
+import view.BoulderDashView;
+import view.IBoulderDashView;
 import view.ViewFacade;
 
 /**
@@ -16,20 +20,30 @@ import view.ViewFacade;
  */
 public abstract class Main {
 
-    /**
-     * The main method.
-     *
-     * @param args
-     *            the arguments
-     */
-    public static void main(final String[] args) {
-        final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+	private static final int startX = 5;
 
-        try {
-            controller.start();
-        } catch (final SQLException exception) {
-            exception.printStackTrace();
-        }
-    }
+	/** The Constant startY. */
+	private static final int startY = 0;
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
+	public static void main(final String[] args) throws IOException, InterruptedException {
+		final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+
+		final IBoulderDashModel model = new BoulderDashModel("map1.txt", startX, startY);
+		final IBoulderDashView view = new BoulderDashView(model.getMap(), model.getPlayer());
+		final IBoulderDashController controller = new BoulderDashController(view, model);
+		view.setOrderPerformer(controller.getOrderPeformer());
+
+		controller.play();
+
+		try {
+			controller.start();
+		} catch (final SQLException exception) {
+			this.exception.printStackTrace();
+		}
 }
