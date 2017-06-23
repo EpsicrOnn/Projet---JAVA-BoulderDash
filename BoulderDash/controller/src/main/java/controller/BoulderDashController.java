@@ -3,9 +3,9 @@ package controller;
 
 import java.sql.SQLException;
 
-import fr.boulderdash.model.IBoulderDashModel;
-import fr.boulderdash.model.IMap;
-import fr.boulderdash.model.mobile.IMobile;
+import mobile.IMobile;
+import model.IBoulderDashModel;
+import model.IMap;
 import view.IBoulderDashView;
 import view.IView;
 

@@ -2,7 +2,9 @@ package view;
 
 import java.awt.event.KeyEvent;
 
-import BoulderDash_controller.controller.IOrderPerformer;
+
+import controller.IOrderPerformer;
+
 import controller.IUserOrder;
 import controller.Order;
 import controller.UserOrder;
@@ -39,7 +41,7 @@ public class EventPerformer implements IEventPerformer {
 	public void eventPerform(final KeyEvent keyCode) {
 		final IUserOrder userOrder = this.keyCodeToUserOrder(keyCode.getKeyCode());
 		if (userOrder != null) {
-			this.orderPerformer.orderPerform(userOrder);
+			this.orderPerformer.orderPerform((UserOrder) userOrder);
 		}
 	}
 
@@ -68,6 +70,6 @@ public class EventPerformer implements IEventPerformer {
 		default:
 			userOrder = null;
 		}
-		return userOrder;
+		return (UserOrder) userOrder;
 	}
 }

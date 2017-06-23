@@ -3,6 +3,8 @@ package model;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Example;
+import model.IModel;
 import model.dao.ExampleDAO;
 
 /**
@@ -11,7 +13,7 @@ import model.dao.ExampleDAO;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public abstract class ModelFacade implements IModel {
+public class ModelFacade implements IModel {
 
 	/**
 	 * Instantiates a new model facade.
@@ -26,8 +28,8 @@ public abstract class ModelFacade implements IModel {
 	 * @see model.IModel#getExampleById(int)
 	 */
 	@Override
-	public Example getTab(final int ID) throws SQLException {
-		return ExampleDAO.getTab(ID);
+	public Example getTab(final int id) throws SQLException {
+		return ExampleDAO.getTab(id);
 	}
 
 	/*
@@ -48,6 +50,12 @@ public abstract class ModelFacade implements IModel {
 	@Override
 	public List<Example> getAllExamples() throws SQLException {
 		return ExampleDAO.getAllExamples();
+	}
+
+	@Override
+	public Example getExampleById(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
