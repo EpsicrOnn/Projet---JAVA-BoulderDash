@@ -1,6 +1,6 @@
 package model;
 
-import model.mobile.IMobile;
+import mobile.IMobile;
 
 public interface IBoulderDashModel {
 

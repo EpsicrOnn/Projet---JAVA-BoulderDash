@@ -8,7 +8,9 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import controller.IOrderPerformer;
+import mobile.IMobile;
 import model.IBoulderDashModel;
+import model.IMap;
 import showboard.BoardFrame;
 
 /**
@@ -59,7 +61,9 @@ public class BoulderDashView implements IBoulderDashView, Runnable {
 	 */
 	public BoulderDashView(final IOrderPerformer orderPerformer, final IBoulderDashModel boulderdashModel,
 	        final Observable observable) {
-	} {
+
+
+	{
 		this.observable = observable;
 		this.graphicsBuilder = new GraphicsBuilder(boulderdashModel);
 		this.eventPerformer = new EventPerformer(orderPerformer);
