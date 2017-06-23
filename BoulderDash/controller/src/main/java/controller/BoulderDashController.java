@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import fr.boulderdash.model.IBoulderDashModel;
 import fr.boulderdash.model.IMap;
 import fr.boulderdash.model.mobile.IMobile;
+import view.IBoulderDashView;
 import view.IView;
 
 /**
@@ -22,7 +23,7 @@ public class BoulderDashController implements IOrderPerformer, IBoulderDashModel
 	/** The time sleep. */
 	private static int				TIME_SLEEP	= 30;
 	/** The view. */
-	private final IView				view;
+	private final IBoulderDashView	view;
 
 	/** The model. */
 	private final IBoulderDashModel	model;
@@ -30,12 +31,12 @@ public class BoulderDashController implements IOrderPerformer, IBoulderDashModel
 	/**
 	 * Instantiates a new controller facade.
 	 *
-	 * @param view
+	 * @param view2
 	 *            the view
 	 * @param model
 	 *            the model
 	 */
-	public BoulderDashController(final IView view, final IBoulderDashModel model) {
+	public BoulderDashController(final IBoulderDashView view, final IBoulderDashModel model) {
 		super();
 		this.view = view;
 		this.model = model;
@@ -103,7 +104,7 @@ public class BoulderDashController implements IOrderPerformer, IBoulderDashModel
 
 	/**
 	 * Play.
-	 * 
+	 *
 	 * @throws SQLException
 	 */
 
