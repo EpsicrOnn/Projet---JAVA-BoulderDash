@@ -8,4 +8,6 @@ public interface IBoulderDashModel {
 
 	IMap getMap();
 
+	IMobile getMobile();
+
 }

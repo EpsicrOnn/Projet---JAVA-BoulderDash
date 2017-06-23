@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import controller.BoulderDashController;
 import controller.ControllerFacade;
+import controller.IBoulderDashController;
 import fr.boulderdash.model.BoulderDashModel;
 import fr.boulderdash.model.IBoulderDashModel;
 import model.ModelFacade;
@@ -18,12 +19,12 @@ import view.ViewFacade;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public abstract class Main {
+public abstract class Main implements IBoulderDashModel, IBoulderDashView, IBoulderDashController {
 
-	private static final int startX = 5;
+	private static final int	startX	= 5;
 
 	/** The Constant startY. */
-	private static final int startY = 0;
+	private static final int	startY	= 0;
 
 	/**
 	 * The main method.
@@ -36,14 +37,14 @@ public abstract class Main {
 
 		final IBoulderDashModel model = new BoulderDashModel("map1.txt", startX, startY);
 		final IBoulderDashView view = new BoulderDashView(model.getMap(), model.getPlayer());
-		final IBoulderDashController controller = new BoulderDashController(view, model);
-		view.setOrderPerformer(controller.getOrderPeformer());
-
-		controller.play();
+		final IBoulderDashController controller1 = new BoulderDashController(view, model);
+		view.setOrderPerformer(controller1.getOrderPerformer());
 
 		try {
-			controller.start();
+			controller1.start();
 		} catch (final SQLException exception) {
-			this.exception.printStackTrace();
+			exception.printStackTrace();
 		}
+		controller1.play();
+	}
 }

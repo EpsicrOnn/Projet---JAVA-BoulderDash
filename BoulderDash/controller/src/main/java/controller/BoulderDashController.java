@@ -3,37 +3,43 @@ package controller;
 
 import java.sql.SQLException;
 
-import model.IModel;
+import fr.boulderdash.model.IBoulderDashModel;
+import fr.boulderdash.model.IMap;
+import fr.boulderdash.model.mobile.IMobile;
+import view.IBoulderDashView;
 import view.IView;
 
 /**
  * The Class BDControlleur.
  */
-public class BoulderDashController implements IController {
+public class BoulderDashController implements IOrderPerformer, IBoulderDashModel {
 
 	/** The view system. */
-	private IView boulderdashView;
+
+	private IView					boulderdashView;
 
 	/** The stack order. */
-	private Order stackOrder;
+	private Order					stackOrder;
 
 	/** The time sleep. */
-	private static int TIME_SLEEP = 30;
+	private static int				TIME_SLEEP	= 30;
 	/** The view. */
-	private final IView view;
+	private final IBoulderDashView	view;
 
 	/** The model. */
-	private final BoulderDashModel Mobile;
+	private final IBoulderDashModel	model;
 
 	/**
 	 * Instantiates a new controller facade.
 	 *
-	 * @param view
+	 * @param view2
 	 *            the view
 	 * @param model
 	 *            the model
 	 */
-	public BoulderDashController(final IView view, final IBoulderDashModel model) {
+
+	public BoulderDashController(final IBoulderDashView view, final IBoulderDashModel model) {
+
 		super();
 		this.view = view;
 		this.model = model;
@@ -92,7 +98,7 @@ public class BoulderDashController implements IController {
 	 *
 	 * @return the model
 	 */
-	public IModel getModel() {
+	public IBoulderDashModel getModel() {
 		return this.model;
 	}
 
@@ -134,12 +140,14 @@ public class BoulderDashController implements IController {
 
 	/**
 	 * Play.
+	 *
+	 * @throws SQLException
 	 */
 
-	public void play() {
+	public void play() throws SQLException {
 
 		this.gameLoop();
-		this.boulderdashView.closeAll();
+
 	}
 
 	/**
@@ -158,5 +166,63 @@ public class BoulderDashController implements IController {
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
+
+	private void gameLoop() throws SQLException {
+		while (!this.getModel().getMobile().isAlive()) {
+			try {
+				Thread.sleep(TIME_SLEEP);
+			} catch (final InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+			switch (this.getStackOrder()) {
+			case RIGHT:
+				this.getModel().getMobile().moveRight();
+				break;
+			case LEFT:
+				this.getModel().getMobile().moveLeft();
+				break;
+			case UP:
+				this.getModel().getMobile().moveUp();
+				break;
+			case DOWN:
+				this.getModel().getMobile().moveDown();
+				break;
+			case NOP:
+			default:
+				this.getModel().getMobile().doNothing();
+				break;
+			}
+			this.clearStackOrder();
+
+			this.view.notify();
+
+		}
+		this.boulderdashView.displayMessage("Game Over !");
+	}
+
+	@Override
+	public void orderPerform(final UserOrder userOrder) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IMobile getPlayer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IMap getMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IMobile getMobile() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
