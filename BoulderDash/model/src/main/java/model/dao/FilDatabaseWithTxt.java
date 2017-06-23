@@ -40,16 +40,16 @@ public class FilDatabaseWithTxt {
 	 *            the idlevel
 	 * @param fileName
 	 *            the file name
-	 * @param levelName
+	 * @param levelname2
 	 *            the level name
 	 * @param dao
 	 *            the dao
 	 */
-	public FilDatabaseWithTxt(final int idlevel, final String fileName, final String levelName,
+	public FilDatabaseWithTxt(final int idlevel, final String fileName, final String levelname2,
 			final BoulderDashBDDConnector dao) {
 		this.idlevel = idlevel;
 		this.fileName = fileName;
-		this.levelName = levelName;
+		this.levelName = levelname2;
 		this.dao = dao;
 
 	}
@@ -68,15 +68,13 @@ public class FilDatabaseWithTxt {
 		this.setWidth(Integer.parseInt(line));
 		line = buffer.readLine();
 		this.setHeight(Integer.parseInt(line));
-		this.dao.executeUpdate(
-				"INSERT INTO `level` (`ID`, `Level_Name`, `Width`, `Height`) VALUES ('" + this.getIdlevel() + "', '"
-						+ this.getLevelName() + "', '" + this.getWidth() + "', '" + this.getHeight() + "');");
+		this.dao.executeUpdate("INSERT INTO `map` (`ID`, `Level_Name`, `Width`, `Height`) VALUES ('" + this.getIdlevel()
+				+ "', '" + this.getLevelName() + "', '" + this.getWidth() + "', '" + this.getHeight() + "');");
 		line = buffer.readLine();
 		while (line != null) {
 			for (int x = 0; x < line.toCharArray().length; x++) {
-				this.dao.executeUpdate(
-						"INSERT INTO `position` (`ID`, `X`, `Y`, `ID_Level`, `ID_Element_Type`) VALUES (NULL, '" + x
-								+ "', '" + y + "', '" + this.getIdlevel() + "', '" + line.toCharArray()[x] + "');");
+				this.dao.executeUpdate("INSERT INTO `object` (`ID`, `X`, `Y`, `ID_Map`, `Numero`) VALUES (NULL, '" + x
+						+ "', '" + y + "', '" + this.getIdlevel() + "', '" + line.toCharArray()[x] + "');");
 			}
 			line = buffer.readLine();
 			y++;

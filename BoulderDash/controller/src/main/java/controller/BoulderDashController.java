@@ -12,18 +12,18 @@ import view.IView;
 public class BoulderDashController implements IController {
 
 	/** The view system. */
-	private IView			boulderdashView;
+	private IView boulderdashView;
 
 	/** The stack order. */
-	private Order			stackOrder;
+	private Order stackOrder;
 
 	/** The time sleep. */
-	private static int		TIME_SLEEP	= 30;
+	private static int TIME_SLEEP = 30;
 	/** The view. */
-	private final IView		view;
+	private final IView view;
 
 	/** The model. */
-	private final IModel	model;
+	private final BoulderDashModel Mobile;
 
 	/**
 	 * Instantiates a new controller facade.
@@ -33,7 +33,7 @@ public class BoulderDashController implements IController {
 	 * @param model
 	 *            the model
 	 */
-	public BoulderDashController(final IView view, final IModel model) {
+	public BoulderDashController(final IView view, final IBoulderDashModel model) {
 		super();
 		this.view = view;
 		this.model = model;
@@ -44,6 +44,39 @@ public class BoulderDashController implements IController {
 	 *
 	 * @return the view
 	 */
+
+	private void gameLoop() throws SQLException {
+		while (!this.getModel().getPlayer().isAlive()) {
+			try {
+				Thread.sleep(TIME_SLEEP);
+			} catch (final InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+			switch (this.getStackOrder()) {
+			case RIGHT:
+				this.getPlayer().moveRight();
+				break;
+			case LEFT:
+				this.boulderdashModel.getPlayer().moveLeft();
+				break;
+			case UP:
+				this.getModel().getPlayer().moveUp();
+				break;
+			case DOWN:
+				this.getModel().getPlayer().moveDown();
+				break;
+			case NOP:
+			default:
+				this.getModel().getPlayer().doNothing();
+				break;
+			}
+			this.clearStackOrder();
+			this.view.Scrolling();
+			this.view.notify();
+
+		}
+		this.viewSystem.displayMessage("Game Over !");
+	}
 
 	/**
 	 * Gets the view.
@@ -125,37 +158,5 @@ public class BoulderDashController implements IController {
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
-	private void gameLoop() throws SQLException {
-		while (!this.getModel().getMobile().isAlive()) {
-			try {
-				Thread.sleep(TIME_SLEEP);
-			} catch (final InterruptedException ex) {
-				Thread.currentThread().interrupt();
-			}
-			switch (this.getStackOrder()) {
-			case RIGHT:
-				this.getMobile().moveRight();
-				break;
-			case LEFT:
-				this.getModel().getMobile().moveLeft();
-				break;
-			case UP:
-				this.getModel().getMobile().moveUp();
-				break;
-			case DOWN:
-				this.getModel().getMobile().moveDown();
-				break;
-			case NOP:
-			default:
-				this.getModel().getMobile().doNothing();
-				break;
-			}
-			this.clearStackOrder();
-			this.view.Scrolling();
-			this.view.notify();
-
-		}
-		this.viewSystem.displayMessage("Game Over !");
-	}
 
 }
