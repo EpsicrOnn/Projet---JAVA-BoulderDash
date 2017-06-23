@@ -61,17 +61,20 @@ public class BoulderDashView implements IBoulderDashView, Runnable {
 	        final Observable observable) {
 	} {
 		this.observable = observable;
-		this.graphicsBuilder = new GraphicsBuilder(boulderdashModel);
+		this.graphicsBuilder = new GraphicsBuilder(Map);
 		this.eventPerformer = new EventPerformer(orderPerformer);
 		SwingUtilities.invokeLater(this);
 	}
+	 public final void frameConfigure(final BoardFrame frame) {
+	 }
+	 
 
 	@Override
 	public void run() {
 		this.boardFrame = new BoardFrame("BoulderDash", this.eventPerformer, this.graphicsBuilder, this.observable);
 		final BoardFrame framePlayerView = new BoardFrame("Player view");
-		this.width = this.boulderdashModel.getWidth();
-		this.height = this.boulderdashModel.getHeight();
+		this.width = this.Map.getWidth();
+		this.height = this.Map.getHeight();
 		framePlayerView.setDimension(new Dimension(this.width, this.height));
 		framePlayerView.setDisplayFrame(playerView);
 		framePlayerView.setSize(defaultFrameSize, defaultFrameSize);

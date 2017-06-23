@@ -5,6 +5,7 @@ import java.awt.Point;
 import model.Collision;
 import model.Element;
 import model.IMap;
+import model.IMobile;
 import model.Sprite;
 
 public abstract class Mobile extends Element implements IMobile {

@@ -2,7 +2,6 @@ package model;
 
 import java.io.IOException;
 
-import mobile.IMobile;
 import mobile.Player;
 
 /**
