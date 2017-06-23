@@ -7,4 +7,7 @@ public interface IBoulderDashModel {
 	IMobile getMobile();
 
 	IMobile getPlayer();
+
+	IMobile getWidth();
+
 }

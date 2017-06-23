@@ -134,20 +134,20 @@ public class BoulderDashController implements IController {
 			}
 			switch (this.getStackOrder()) {
 			case RIGHT:
-				this.getModel().getPlayer().moveRight();
+				this.getMobile().moveRight();
 				break;
 			case LEFT:
-				this.getModel().getPlayer().moveLeft();
+				this.getModel().getMobile().moveLeft();
 				break;
 			case UP:
-				this.getModel().getPlayer().moveUp();
+				this.getModel().getMobile().moveUp();
 				break;
 			case DOWN:
-				this.getModel().getPlayer().moveDown();
+				this.getModel().getMobile().moveDown();
 				break;
 			case NOP:
 			default:
-				this.getModel().getPlayer().doNothing();
+				this.getModel().getMobile().doNothing();
 				break;
 			}
 			this.clearStackOrder();
@@ -156,18 +156,6 @@ public class BoulderDashController implements IController {
 
 		}
 		this.viewSystem.displayMessage("Game Over !");
-	}
-
-	@Override
-	public void IOrder() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void IOrderPerformer() {
-		// TODO Auto-generated method stub
-
 	}
 
 }
