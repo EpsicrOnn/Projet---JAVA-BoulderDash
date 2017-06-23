@@ -1,7 +1,10 @@
 package view;
 
 import java.awt.Graphics;
-import java.awt.image.ImageObserver;
+
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
+
 
 import gameframe.IGraphicsBuilder;
 import model.IModel.IBoulderDashModel;
