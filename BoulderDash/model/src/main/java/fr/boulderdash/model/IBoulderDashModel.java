@@ -6,6 +6,6 @@ public interface IBoulderDashModel {
 
 	IMobile getPlayer();
 
-	IMobile getMap();
+	IMap getMap();
 
 }
