@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 /**
  * The Class FillDatabaseWithTxt.
  */
-public class FilData {
+public class FilDatabaseWithTxt {
 
 	private int width;
 
@@ -45,7 +45,8 @@ public class FilData {
 	 * @param dao
 	 *            the dao
 	 */
-	public FilData(final int idlevel, final String fileName, final String levelName, final DAOController dao) {
+	public FilDatabaseWithTxt(final int idlevel, final String fileName, final String levelName,
+			final DAOController dao) {
 		this.idlevel = idlevel;
 		this.fileName = fileName;
 		this.levelName = levelName;
@@ -67,12 +68,13 @@ public class FilData {
 		this.setWidth(Integer.parseInt(line));
 		line = buffer.readLine();
 		this.setHeight(Integer.parseInt(line));
-		DAO.executeUpdate("INSERT INTO `level` (`ID`, `Level_Name`, `Width`, `Height`) VALUES ('" + this.getIdlevel()
-				+ "', '" + this.getLevelName() + "', '" + this.getWidth() + "', '" + this.getHeight() + "');");
+		this.dao.executeUpdate(
+				"INSERT INTO `level` (`ID`, `Level_Name`, `Width`, `Height`) VALUES ('" + this.getIdlevel() + "', '"
+						+ this.getLevelName() + "', '" + this.getWidth() + "', '" + this.getHeight() + "');");
 		line = buffer.readLine();
 		while (line != null) {
 			for (int x = 0; x < line.toCharArray().length; x++) {
-				DAO.executeUpdate(
+				this.dao.executeUpdate(
 						"INSERT INTO `position` (`ID`, `X`, `Y`, `ID_Level`, `ID_Element_Type`) VALUES (NULL, '" + x
 								+ "', '" + y + "', '" + this.getIdlevel() + "', '" + line.toCharArray()[x] + "');");
 			}

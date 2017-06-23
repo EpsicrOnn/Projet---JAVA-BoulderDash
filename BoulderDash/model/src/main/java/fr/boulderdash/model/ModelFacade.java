@@ -5,7 +5,7 @@ import java.util.List;
 
 import model.Example;
 import model.IModel;
-import model.dao.FilData;
+import model.dao.FilDatabaseWithTxt;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
@@ -29,7 +29,7 @@ public class ModelFacade implements IModel {
 	 */
 	@Override
 	public Example getAll(final int id) throws SQLException {
-		return FilData.getAll(id);
+		return FilDatabaseWithTxt.getAll(id);
 	}
 
 	/*
@@ -39,7 +39,7 @@ public class ModelFacade implements IModel {
 	 */
 	@Override
 	public Example getExampleByName(final String name) throws SQLException {
-		return FilData.getExampleByName(name);
+		return FilDatabaseWithTxt.getExampleByName(name);
 	}
 
 	/*
@@ -49,7 +49,7 @@ public class ModelFacade implements IModel {
 	 */
 	@Override
 	public List<Example> getAllExamples() throws SQLException {
-		return FilData.getAllExamples();
+		return FilDatabaseWithTxt.getAllExamples();
 	}
 
 }

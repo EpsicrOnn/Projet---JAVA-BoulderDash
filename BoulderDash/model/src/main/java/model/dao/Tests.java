@@ -30,7 +30,7 @@ public class Tests {
 	public static void main(final String[] args) throws IOException {
 		final DAOController dao1 = new DAOController();
 		System.out.println("Starting database filling...");
-		final FilData fillDB = new FilData(Tests.idlevel, Tests.fileName, Tests.levelName, dao1);
+		final FilDatabaseWithTxt fillDB = new FilDatabaseWithTxt(Tests.idlevel, Tests.fileName, Tests.levelName, dao1);
 		dao1.open();
 		fillDB.loadFile();
 		dao1.close();
