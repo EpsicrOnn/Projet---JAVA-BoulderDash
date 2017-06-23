@@ -24,7 +24,7 @@ public class FilDatabaseWithTxt {
 	private final String levelName;
 
 	/** The dao. */
-	private final DAOController dao;
+	private final BoulderDashBDDConnector dao;
 
 	/** The query. */
 	String query;
@@ -46,7 +46,7 @@ public class FilDatabaseWithTxt {
 	 *            the dao
 	 */
 	public FilDatabaseWithTxt(final int idlevel, final String fileName, final String levelName,
-			final DAOController dao) {
+			final BoulderDashBDDConnector dao) {
 		this.idlevel = idlevel;
 		this.fileName = fileName;
 		this.levelName = levelName;

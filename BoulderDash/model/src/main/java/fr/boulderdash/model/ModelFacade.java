@@ -5,7 +5,7 @@ import java.util.List;
 
 import model.Example;
 import model.IModel;
-import model.dao.FilDatabaseWithTxt;
+import model.dao.ExampleDAO;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
@@ -24,32 +24,38 @@ public class ModelFacade implements IModel {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see model.IModel#getExampleById(int)
 	 */
 	@Override
-	public Example getAll(final int id) throws SQLException {
-		return FilDatabaseWithTxt.getAll(id);
+	public Example getTab(final int id) throws SQLException {
+		return ExampleDAO.getTab(id);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see model.IModel#getExampleByName(java.lang.String)
 	 */
 	@Override
 	public Example getExampleByName(final String name) throws SQLException {
-		return FilDatabaseWithTxt.getExampleByName(name);
+		return ExampleDAO.getExampleByName(name);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see model.IModel#getAllExamples()
 	 */
 	@Override
 	public List<Example> getAllExamples() throws SQLException {
-		return FilDatabaseWithTxt.getAllExamples();
+		return ExampleDAO.getAllExamples();
+	}
+
+	@Override
+	public Example getExampleById(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -42,4 +42,6 @@ public interface IModel {
 	 */
 	List<Example> getAllExamples() throws SQLException;
 
+	Example getTab(int ID) throws SQLException;
+
 }

@@ -33,6 +33,7 @@ public abstract class MotionlessElementFactory {
 				return motionlessElement;
 			}
 		}
+		return null;
 
 	}
 }
