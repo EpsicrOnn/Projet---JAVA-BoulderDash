@@ -25,7 +25,7 @@ final class BoulderDashBDDConnector {
 	private static String password = "";
 
 	/** The url. */
-	private static String url = "jdbc:mysql://localhost/boulderdash?useSSL=false&serverTimezone=UTC";
+	private static String url = "jdbc:mysql://localhost/boulderdasht?useSSL=false&serverTimezone=UTC";
 
 	/** The connection. */
 	private Connection connection;
@@ -36,8 +36,9 @@ final class BoulderDashBDDConnector {
 	/**
 	 * Instantiates a new boulder dash BDD connector.
 	 */
-	BoulderDashBDDConnector() {
-		this.open();
+	public BoulderDashBDDConnector() {
+		this.connection = null;
+		this.statement = null;
 	}
 
 	/**
@@ -67,16 +68,19 @@ final class BoulderDashBDDConnector {
 	 *
 	 * @return true, if successful
 	 */
-	boolean open() {
+	public boolean open() {
 		try {
-			this.connection = DriverManager.getConnection(BoulderDashBDDConnector.url, BoulderDashBDDConnector.user,
-					BoulderDashBDDConnector.password);
+			Class.forName("com.mysql.jdbc.Driver");
+			this.connection = DriverManager.getConnection(url, user, password);
 			this.statement = this.connection.createStatement();
-			return true;
-		} catch (final SQLException exception) {
-			exception.printStackTrace();
+		} catch (final SQLException e) {
+			e.printStackTrace();
+			return false;
+		} catch (final ClassNotFoundException e) {
+			e.printStackTrace();
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	/**
@@ -120,11 +124,11 @@ final class BoulderDashBDDConnector {
 	 */
 	public int executeUpdate(final String query) {
 		try {
-			return this.statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			return this.statement.executeUpdate(query);
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return -1;
 	}
 
 	/**

@@ -15,6 +15,7 @@ import view.IView;
 public class BoulderDashController implements IOrderPerformer, IBoulderDashModel {
 
 	/** The view system. */
+
 	private IView					boulderdashView;
 
 	/** The stack order. */
@@ -36,7 +37,9 @@ public class BoulderDashController implements IOrderPerformer, IBoulderDashModel
 	 * @param model
 	 *            the model
 	 */
+
 	public BoulderDashController(final IBoulderDashView view, final IBoulderDashModel model) {
+
 		super();
 		this.view = view;
 		this.model = model;
@@ -47,6 +50,39 @@ public class BoulderDashController implements IOrderPerformer, IBoulderDashModel
 	 *
 	 * @return the view
 	 */
+
+	private void gameLoop() throws SQLException {
+		while (!this.getModel().getPlayer().isAlive()) {
+			try {
+				Thread.sleep(TIME_SLEEP);
+			} catch (final InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+			switch (this.getStackOrder()) {
+			case RIGHT:
+				this.getPlayer().moveRight();
+				break;
+			case LEFT:
+				this.boulderdashModel.getPlayer().moveLeft();
+				break;
+			case UP:
+				this.getModel().getPlayer().moveUp();
+				break;
+			case DOWN:
+				this.getModel().getPlayer().moveDown();
+				break;
+			case NOP:
+			default:
+				this.getModel().getPlayer().doNothing();
+				break;
+			}
+			this.clearStackOrder();
+			this.view.Scrolling();
+			this.view.notify();
+
+		}
+		this.viewSystem.displayMessage("Game Over !");
+	}
 
 	/**
 	 * Gets the view.
@@ -130,6 +166,7 @@ public class BoulderDashController implements IOrderPerformer, IBoulderDashModel
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
+
 	private void gameLoop() throws SQLException {
 		while (!this.getModel().getMobile().isAlive()) {
 			try {
@@ -186,5 +223,6 @@ public class BoulderDashController implements IOrderPerformer, IBoulderDashModel
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }
