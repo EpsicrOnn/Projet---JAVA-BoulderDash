@@ -4,7 +4,7 @@ import fr.boulderdash.model.mobile.IMobile;
 
 public interface IBoulderDashModel {
 
-	IMobile getMobile();
+	IMobile getMap();
 
 	IMobile getPlayer();
 }
