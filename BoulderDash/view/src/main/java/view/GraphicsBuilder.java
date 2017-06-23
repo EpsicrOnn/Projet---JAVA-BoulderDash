@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Graphics;
-
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
