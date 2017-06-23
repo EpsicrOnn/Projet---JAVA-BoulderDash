@@ -12,10 +12,10 @@ import view.IView;
 public class BoulderDashController implements IController {
 
 	/** The view system. */
-	private IView			viewSystem;
+	private IView			boulderdashView;
 
 	/** The stack order. */
-	private EOrder			stackOrder;
+	private Order			stackOrder;
 
 	/** The time sleep. */
 	private static int		TIME_SLEEP	= 30;
@@ -69,7 +69,7 @@ public class BoulderDashController implements IController {
 	 * @param userOrder
 	 *            the user order
 	 */
-	public void orderPerform(final EOrder userOrder) {
+	public void orderPerform(final Order userOrder) {
 		this.setStackOrder(userOrder);
 	}
 
@@ -79,7 +79,7 @@ public class BoulderDashController implements IController {
 	 * @param stackOrder
 	 *            the new stack order
 	 */
-	private void setStackOrder(final EOrder stackOrder) {
+	private void setStackOrder(final Order stackOrder) {
 		this.stackOrder = stackOrder;
 	}
 
@@ -88,7 +88,7 @@ public class BoulderDashController implements IController {
 	 *
 	 * @return the stack order
 	 */
-	public EOrder getStackOrder() {
+	public Order getStackOrder() {
 		return this.stackOrder;
 	}
 
@@ -96,7 +96,7 @@ public class BoulderDashController implements IController {
 	 * Clear stack order.
 	 */
 	private void clearStackOrder() {
-		this.stackOrder = EOrder.NOP;
+		this.stackOrder = Order.NOP;
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class BoulderDashController implements IController {
 	public void play() {
 
 		this.gameLoop();
-		this.viewSystem.closeAll();
+		this.boulderdashView.closeAll();
 	}
 
 	/**
@@ -115,8 +115,8 @@ public class BoulderDashController implements IController {
 	 * @param viewSystem
 	 *            the new BD view
 	 */
-	public void setBDView(final IView viewSystem) {
-		this.viewSystem = viewSystem;
+	public void setBoulderDashView(final IView boulderdashView) {
+		this.boulderdashView = boulderdashView;
 	}
 
 	/**

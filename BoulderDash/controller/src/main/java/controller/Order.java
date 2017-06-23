@@ -4,7 +4,7 @@ package controller;
 /**
  * The Enum EOrder.
  */
-public enum EOrder {
+public enum Order {
 	
 	/** The up. */
 	UP, 

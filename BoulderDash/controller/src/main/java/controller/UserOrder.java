@@ -10,7 +10,7 @@ public class UserOrder implements IUserOrder {
 	private final int		player;
 	
 	/** The order. */
-	private final EOrder	order;
+	private final Order	order;
 
 	/**
 	 * Instantiates a new user order.
@@ -18,7 +18,7 @@ public class UserOrder implements IUserOrder {
 	 * @param player the player
 	 * @param order the order
 	 */
-	public UserOrder(final int player, final EOrder order) {
+	public UserOrder(final int player, final Order order) {
 		this.player = player;
 		this.order = order;
 	}
@@ -35,7 +35,7 @@ public class UserOrder implements IUserOrder {
 	 * @see controller.IOrder#getOrder()
 	 */
 	@Override
-	public EOrder getOrder() {
+	public Order getOrder() {
 		return this.order;
 	}
 

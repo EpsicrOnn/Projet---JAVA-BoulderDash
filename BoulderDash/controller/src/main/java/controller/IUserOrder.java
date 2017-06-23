@@ -11,7 +11,7 @@ public interface IUserOrder {
 	 *
 	 * @return the order
 	 */
-	public EOrder getOrder();
+	public Order getOrder();
 
 	/**
 	 * Gets the player.
