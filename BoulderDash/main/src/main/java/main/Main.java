@@ -20,10 +20,10 @@ import view.ViewFacade;
  */
 public abstract class Main {
 
-	private static final int startX = 5;
+	private static final int	startX	= 5;
 
 	/** The Constant startY. */
-	private static final int startY = 0;
+	private static final int	startY	= 0;
 
 	/**
 	 * The main method.
@@ -39,11 +39,11 @@ public abstract class Main {
 		final IBoulderDashController controller = new BoulderDashController(view, model);
 		view.setOrderPerformer(controller.getOrderPeformer());
 
-		controller.play();
-
 		try {
 			controller.start();
 		} catch (final SQLException exception) {
 			this.exception.printStackTrace();
 		}
+		controller.play();
+	}
 }

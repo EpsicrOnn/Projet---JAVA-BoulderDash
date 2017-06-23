@@ -3,27 +3,29 @@ package controller;
 
 import java.sql.SQLException;
 
-import model.IModel;
+import fr.boulderdash.model.IBoulderDashModel;
+import fr.boulderdash.model.IMap;
+import fr.boulderdash.model.mobile.IMobile;
 import view.IView;
 
 /**
  * The Class BDControlleur.
  */
-public class BoulderDashController implements IController {
+public class BoulderDashController implements IOrderPerformer, IBoulderDashModel {
 
 	/** The view system. */
-	private IView			boulderdashView;
+	private IView					boulderdashView;
 
 	/** The stack order. */
-	private Order			stackOrder;
+	private Order					stackOrder;
 
 	/** The time sleep. */
-	private static int		TIME_SLEEP	= 30;
+	private static int				TIME_SLEEP	= 30;
 	/** The view. */
-	private final IView		view;
+	private final IView				view;
 
 	/** The model. */
-	private final IModel	model;
+	private final IBoulderDashModel	model;
 
 	/**
 	 * Instantiates a new controller facade.
@@ -33,7 +35,7 @@ public class BoulderDashController implements IController {
 	 * @param model
 	 *            the model
 	 */
-	public BoulderDashController(final IView view, final IModel model) {
+	public BoulderDashController(final IView view, final IBoulderDashModel model) {
 		super();
 		this.view = view;
 		this.model = model;
@@ -59,7 +61,7 @@ public class BoulderDashController implements IController {
 	 *
 	 * @return the model
 	 */
-	public IModel getModel() {
+	public IBoulderDashModel getModel() {
 		return this.model;
 	}
 
@@ -101,12 +103,14 @@ public class BoulderDashController implements IController {
 
 	/**
 	 * Play.
+	 * 
+	 * @throws SQLException
 	 */
 
-	public void play() {
+	public void play() throws SQLException {
 
 		this.gameLoop();
-		this.boulderdashView.closeAll();
+
 	}
 
 	/**
@@ -134,7 +138,7 @@ public class BoulderDashController implements IController {
 			}
 			switch (this.getStackOrder()) {
 			case RIGHT:
-				this.getMobile().moveRight();
+				this.getModel().getMobile().moveRight();
 				break;
 			case LEFT:
 				this.getModel().getMobile().moveLeft();
@@ -151,11 +155,35 @@ public class BoulderDashController implements IController {
 				break;
 			}
 			this.clearStackOrder();
-			this.view.Scrolling();
+
 			this.view.notify();
 
 		}
-		this.viewSystem.displayMessage("Game Over !");
+		this.boulderdashView.displayMessage("Game Over !");
+	}
+
+	@Override
+	public void orderPerform(final UserOrder userOrder) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IMobile getPlayer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IMap getMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IMobile getMobile() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
