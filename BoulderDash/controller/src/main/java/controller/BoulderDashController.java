@@ -3,9 +3,9 @@ package controller;
 
 import java.sql.SQLException;
 
-import mobile.IMobile;
 import model.IBoulderDashModel;
 import model.IMap;
+import model.IMobile;
 import view.IBoulderDashView;
 import view.IView;
 

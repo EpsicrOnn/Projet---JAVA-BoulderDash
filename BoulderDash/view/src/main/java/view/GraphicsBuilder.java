@@ -6,7 +6,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import gameframe.IGraphicsBuilder;
 import model.IBoulderDashModel;
-import mobile.Mobile;
+import model.IMobile;
+import model.IMap;
 
 /**
  * <h1>The Class GraphicsBuilder</h1>
@@ -18,6 +19,7 @@ public class GraphicsBuilder implements IGraphicsBuilder {
 
 	/** The boulderdash model. */
 	private final IBoulderDashModel boulderdashModel;
+	private final IMap Map;
 
 	/**
 	 * Instantiates a new graphics builder.
@@ -31,19 +33,19 @@ public class GraphicsBuilder implements IGraphicsBuilder {
 
 	@Override
 	public void applyModelToGraphic(final Graphics graphics, final ImageObserver observer) {
-		for (final IMobile mobile : this.boulderdashModel.getMobile()) {
+		for (final IMobile mobile : this.boulderdashModel.Mobile()) {
 			this.drawMobile(mobile, graphics, observer);
 		}
 	}
 
 	@Override
 	public int getGlobalWidth() {
-		return this.boulderdashModel.getWidth();
+		return this.Map.getWidth();
 	}
 
 	@Override
 	public int getGlobalHeight() {
-		return this.boulderdashModel.getHeight();
+		return this.Map.getHeight();
 	}
 
 }
