@@ -8,7 +8,7 @@ import mobile.Player;
 /**
  * <h1>The Class InsaneVehiclesModel.</h1>
  */
-public class BoulderDashModel implements IBoulderDashModel {
+public abstract class BoulderDashModel implements IBoulderDashModel {
 
 	/** The road. */
 	private IMap map;
