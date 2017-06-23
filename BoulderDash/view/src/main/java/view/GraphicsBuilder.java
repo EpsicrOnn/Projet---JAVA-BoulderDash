@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 
 import gameframe.IGraphicsBuilder;
-import model.IModel.IBoulderDashModel;
+import model.IBoulderDashModel;
 
 /**
  * <h1>The Class GraphicsBuilder</h1>
