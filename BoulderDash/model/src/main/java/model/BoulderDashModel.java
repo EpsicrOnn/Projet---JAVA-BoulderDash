@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import mobile.Player;
 
+// TODO: Auto-generated Javadoc
 /**
  * <h1>The Class InsaneVehiclesModel.</h1>
  */
@@ -18,29 +19,44 @@ public class BoulderDashModel implements IBoulderDashModel {
 	/**
 	 * Instantiates a new insane vehicles model.
 	 *
-	 * @param fileName
-	 *            the file name
-	 * @param myVehicleStartX
-	 *            the my vehicle start X
-	 * @param myVehicleStartY
-	 *            the my vehicle start Y
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @param level the level
 	 */
 	  public BoulderDashModel(final int level) {
 	        System.out.println("cc2");
 	        this.setMap(new Map(level));
 
+	/**
+	 * Instantiates a new boulder dash model.
+	 *
+	 * @param fileName the file name
+	 * @param myVehicleStartX the my vehicle start X
+	 * @param myVehicleStartY the my vehicle start Y
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public BoulderDashModel(final String fileName, final int myVehicleStartX, final int myVehicleStartY)
 			throws IOException {
 		this.setMap(new Map(fileName));
 		this.setPlayer(new Player(myVehicleStartX, myVehicleStartY, this.getMap()));
 	}
 
+	/**
+	 * Gets the all positions by id.
+	 *
+	 * @param levelID the level ID
+	 * @return the all positions by id
+	 * @throws SQLException the SQL exception
+	 */
 	public List<FillingMap> getAllPositionsById(final int levelID) throws SQLException {
 		return DAO.getMapFilledByID(levelID);
 	}
 
+	/**
+	 * Gets the level by ID.
+	 *
+	 * @param levelID the level ID
+	 * @return the level by ID
+	 * @throws SQLException the SQL exception
+	 */
 	public GamingMap getLevelByID(final int levelID) throws SQLException {
 		return DAO.getLevelByID(levelID);
 	}
@@ -58,8 +74,7 @@ public class BoulderDashModel implements IBoulderDashModel {
 	/**
 	 * Sets the road.
 	 *
-	 * @param road
-	 *            the road to set
+	 * @param map the new map
 	 */
 	private void setMap(final IMap map) {
 		this.map = map;
@@ -78,8 +93,7 @@ public class BoulderDashModel implements IBoulderDashModel {
 	/**
 	 * Sets the my vehicle.
 	 *
-	 * @param myVehicle
-	 *            the myVehicle to set
+	 * @param palyer the new player
 	 */
 	private void setPlayer(final IMobile palyer) {
 		this.player = this.player;

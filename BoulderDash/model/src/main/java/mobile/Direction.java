@@ -1,7 +1,17 @@
 package mobile;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Enum Direction.
+ */
 public enum Direction {
 
-	UP, DOWN, LEFT, RIGHT, NOP, DEFAULT
+	/** The up. */
+	UP, /** The down. */
+ DOWN, /** The left. */
+ LEFT, /** The right. */
+ RIGHT, /** The nop. */
+ NOP, /** The default. */
+ DEFAULT
 
 }

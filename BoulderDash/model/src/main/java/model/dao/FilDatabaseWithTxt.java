@@ -5,13 +5,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class FillDatabaseWithTxt.
  */
 public class FilDatabaseWithTxt {
 
+	/** The width. */
 	private int width;
 
+	/** The height. */
 	private int height;
 
 	/** The idlevel. */
@@ -32,18 +35,10 @@ public class FilDatabaseWithTxt {
 	/**
 	 * Instantiates a new fill database with txt.
 	 *
-	 * @param width
-	 *            the width
-	 * @param height
-	 *            the height
-	 * @param idlevel
-	 *            the idlevel
-	 * @param fileName
-	 *            the file name
-	 * @param levelname2
-	 *            the level name
-	 * @param dao1
-	 *            the dao
+	 * @param idlevel            the idlevel
+	 * @param fileName            the file name
+	 * @param levelname the levelname
+	 * @param dao1            the dao
 	 */
 
 	public FilDatabaseWithTxt(int idlevel, String fileName, String levelname, BddInsertion dao1) {
@@ -108,18 +103,38 @@ public class FilDatabaseWithTxt {
 		return this.levelName;
 	}
 
+	/**
+	 * Gets the width.
+	 *
+	 * @return the width
+	 */
 	public int getWidth() {
 		return this.width;
 	}
 
+	/**
+	 * Sets the width.
+	 *
+	 * @param width the new width
+	 */
 	public void setWidth(final int width) {
 		this.width = width;
 	}
 
+	/**
+	 * Gets the height.
+	 *
+	 * @return the height
+	 */
 	public int getHeight() {
 		return this.height;
 	}
 
+	/**
+	 * Sets the height.
+	 *
+	 * @param height the new height
+	 */
 	public void setHeight(final int height) {
 		this.height = height;
 	}

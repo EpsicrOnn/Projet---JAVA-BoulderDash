@@ -2,6 +2,7 @@ package model.dao;
 
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Tests.
  */
@@ -17,6 +18,7 @@ public class Tests {
 	/** The Constant fileName. */
 	private final static String fileName = "map1.txt";
 
+	/** The Constant levelName. */
 	private final static String levelName = "map1";
 
 	/**

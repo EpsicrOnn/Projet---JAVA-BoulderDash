@@ -7,6 +7,7 @@ import model.Example;
 import model.IModel;
 import model.dao.ExampleDAO;
 
+// TODO: Auto-generated Javadoc
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
  *
@@ -52,6 +53,9 @@ public class ModelFacade implements IModel {
 		return ExampleDAO.getAllExamples();
 	}
 
+	/* (non-Javadoc)
+	 * @see model.IModel#getExampleById(int)
+	 */
 	@Override
 	public Example getExampleById(int id) throws SQLException {
 		// TODO Auto-generated method stub
