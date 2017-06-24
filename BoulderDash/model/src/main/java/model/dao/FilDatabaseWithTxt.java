@@ -45,13 +45,12 @@ public class FilDatabaseWithTxt {
 	 * @param dao1
 	 *            the dao
 	 */
-	public FilDatabaseWithTxt(final int idlevel, final String fileName, final String levelname2,
-			final BddInsertion dao1) {
+
+	public FilDatabaseWithTxt(int idlevel, String fileName, String levelname, BddInsertion dao1) {
 		this.idlevel = idlevel;
 		this.fileName = fileName;
-		this.levelName = levelname2;
+		this.levelName = levelname;
 		this.dao = dao1;
-
 	}
 
 	/**
@@ -68,9 +67,8 @@ public class FilDatabaseWithTxt {
 		this.setWidth(Integer.parseInt(line));
 		line = buffer.readLine();
 		this.setHeight(Integer.parseInt(line));
-		this.dao.executeUpdate(
-				"INSERT INTO `map` (`ID_Map`, `Level_Name`, `Width`, `Height`) VALUES ('" + this.getIdlevel() + "', '"
-						+ this.getLevelName() + "', '" + this.getWidth() + "', '" + this.getHeight() + "');");
+		this.dao.executeUpdate("INSERT INTO `map` (`ID`, `Level_Name`, `Width`, `Height`) VALUES ('" + this.getIdlevel()
+				+ "', '" + this.getLevelName() + "', '" + this.getWidth() + "', '" + this.getHeight() + "');");
 		line = buffer.readLine();
 		while (line != null) {
 			for (int x = 0; x < line.toCharArray().length; x++) {
