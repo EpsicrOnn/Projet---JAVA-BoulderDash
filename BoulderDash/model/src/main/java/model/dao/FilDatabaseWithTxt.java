@@ -24,7 +24,7 @@ public class FilDatabaseWithTxt {
 	private final String levelName;
 
 	/** The dao. */
-	private final BoulderDashBDDConnector dao;
+	private final BddInsertion dao;
 
 	/** The query. */
 	String query;
@@ -42,15 +42,15 @@ public class FilDatabaseWithTxt {
 	 *            the file name
 	 * @param levelname2
 	 *            the level name
-	 * @param dao
+	 * @param dao1
 	 *            the dao
 	 */
 	public FilDatabaseWithTxt(final int idlevel, final String fileName, final String levelname2,
-			final BoulderDashBDDConnector dao) {
+			final BddInsertion dao1) {
 		this.idlevel = idlevel;
 		this.fileName = fileName;
 		this.levelName = levelname2;
-		this.dao = dao;
+		this.dao = dao1;
 
 	}
 
@@ -68,8 +68,9 @@ public class FilDatabaseWithTxt {
 		this.setWidth(Integer.parseInt(line));
 		line = buffer.readLine();
 		this.setHeight(Integer.parseInt(line));
-		this.dao.executeUpdate("INSERT INTO `map` (`ID`, `Level_Name`, `Width`, `Height`) VALUES ('" + this.getIdlevel()
-				+ "', '" + this.getLevelName() + "', '" + this.getWidth() + "', '" + this.getHeight() + "');");
+		this.dao.executeUpdate(
+				"INSERT INTO `map` (`ID_Map`, `Level_Name`, `Width`, `Height`) VALUES ('" + this.getIdlevel() + "', '"
+						+ this.getLevelName() + "', '" + this.getWidth() + "', '" + this.getHeight() + "');");
 		line = buffer.readLine();
 		while (line != null) {
 			for (int x = 0; x < line.toCharArray().length; x++) {

@@ -28,7 +28,7 @@ public class Tests {
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void main(final String[] args) throws IOException {
-		final BoulderDashBDDConnector dao1 = new BoulderDashBDDConnector();
+		final BddInsertion dao1 = new BddInsertion();
 		System.out.println("Starting database filling...");
 		final FilDatabaseWithTxt fillDB = new FilDatabaseWithTxt(Tests.idlevel, Tests.fileName, Tests.levelName, dao1);
 		dao1.open();
