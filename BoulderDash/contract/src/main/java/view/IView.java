@@ -1,5 +1,6 @@
 package view;
 
+// TODO: Auto-generated Javadoc
 /**
  * <h1>The Interface IView.</h1>
  *

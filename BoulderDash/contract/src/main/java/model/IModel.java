@@ -3,6 +3,7 @@ package model;
 import java.sql.SQLException;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
 /**
  * <h1>The Interface IModel.</h1>
  *
@@ -42,6 +43,13 @@ public interface IModel {
 	 */
 	List<Example> getAllExamples() throws SQLException;
 
+	/**
+	 * Gets the tab.
+	 *
+	 * @param ID the id
+	 * @return the tab
+	 * @throws SQLException the SQL exception
+	 */
 	Example getTab(int ID) throws SQLException;
 
 }

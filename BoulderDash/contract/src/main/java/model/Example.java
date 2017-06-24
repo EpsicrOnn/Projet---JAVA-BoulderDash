@@ -1,5 +1,6 @@
 package model;
 
+// TODO: Auto-generated Javadoc
 /**
  * <h1>The Class Example.</h1>
  *
@@ -13,10 +14,20 @@ public class Example {
 
 	/** The name. */
 	private String name;
+	
+	/** The id. */
 	private int ID;
+	
+	/** The x. */
 	private int X;
+	
+	/** The y. */
 	private int Y;
+	
+	/** The I D map. */
 	private int ID_Map;
+	
+	/** The Numero. */
 	private int Numero;
 
 	/**
@@ -33,6 +44,15 @@ public class Example {
 		this.name = name;
 	}
 
+	/**
+	 * Instantiates a new example.
+	 *
+	 * @param ID the id
+	 * @param X the x
+	 * @param Y the y
+	 * @param ID_Map the i D map
+	 * @param Numero the numero
+	 */
 	public Example(final int ID, final int X, final int Y, final int ID_Map, final int Numero) {
 		super();
 
