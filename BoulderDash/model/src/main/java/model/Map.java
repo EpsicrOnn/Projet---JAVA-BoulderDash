@@ -4,12 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Observable;
 
 import motionless.MotionlessElementFactory;
 
 public class Map extends Observable implements IMap {
 
+	private ArrayList<IMobile> mobiles;
 	private int width;
 	private int height;
 	private IElement[][] onTheMap;
@@ -57,6 +59,7 @@ public class Map extends Observable implements IMap {
 		this.height = height;
 	}
 
+	@Override
 	public final IElement getOnTheMapXY(final int x, final int y) {
 		return this.onTheMap[x][y];
 	}
@@ -74,5 +77,14 @@ public class Map extends Observable implements IMap {
 	@Override
 	public Observable getObservable() {
 		return this;
+	}
+
+	@Override
+	public ArrayList<IMobile> getMobiles() {
+		return this.mobiles;
+	}
+
+	public void setMobiles(final ArrayList<IMobile> mobiles) {
+		this.mobiles = mobiles;
 	}
 }

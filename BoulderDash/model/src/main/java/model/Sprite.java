@@ -1,4 +1,4 @@
-package model;
+package model.element;
 
 import java.awt.Image;
 import java.io.File;
@@ -7,54 +7,57 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Sprite {
-
 	private Image image;
 	private String imageName;
-	private int consoleImage;
 	private boolean imageLoaded;
+	private int databaseIDImage;
 
-	public Sprite(final int i, final String imageName) {
-		this.setConsoleImage(i);
+	public Sprite(final int databaseIDImage, final String imageName) {
+		this.setDatabaseIDImage(databaseIDImage);
 		this.setImageName(imageName);
+		// met en place le nom de l'image
 	}
 
-	public Sprite(final char character) {
-		this(character, "noimage.jpg");
+	public int getDatabaseIDImage() {
+		return this.databaseIDImage;
 	}
 
-	public final Image getImage() {
+	public Image getImage() {
 		return this.image;
 	}
 
-	public final void loadImage() throws IOException {
-		this.setImage(ImageIO.read(new File("images/" + this.getImageName())));
-	}
-
-	public final int getConsoleImage() {
-		return this.consoleImage;
-	}
-
-	private void setImage(final Image image) {
-		this.image = image;
-	}
-
-	private void setConsoleImage(final int i) {
-		this.consoleImage = i;
-	}
-
-	public final String getImageName() {
-		return this.imageName;
-	}
-
-	private void setImageName(final String imageName) {
-		this.imageName = imageName;
-	}
-
-	public final boolean isImageLoaded() {
+	public boolean getImageLoaded() {
 		return this.imageLoaded;
 	}
 
-	public final void setImageLoaded(final boolean isImageLoaded) {
-		this.imageLoaded = isImageLoaded;
+	public String getImageName() {
+		return this.imageName;
+	}
+
+	public void loadImage() {
+		try {
+			this.setImage(ImageIO.read(new File("Sprites/" + this.getImageName())));
+		} catch (final IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// met l'image lue en paramètre grâce à la récupération du nom de
+		// celle-ci
+	}
+
+	public void setDatabaseIDImage(final int databaseIDImage) {
+		this.databaseIDImage = databaseIDImage;
+	}
+
+	public void setImage(final Image image) {
+		this.image = image;
+	}
+
+	public void setImageLoaded(final boolean imageLoaded) {
+		this.imageLoaded = imageLoaded;
+	}
+
+	public void setImageName(final String imageName) {
+		this.imageName = imageName;
 	}
 }

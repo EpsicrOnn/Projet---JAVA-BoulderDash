@@ -4,14 +4,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import controller.BoulderDashController;
-import controller.ControllerFacade;
-import controller.IBoulderDashController;
 import model.BoulderDashModel;
 import model.IBoulderDashModel;
-import model.ModelFacade;
 import view.BoulderDashView;
 import view.IBoulderDashView;
-import view.ViewFacade;
 
 /**
  * <h1>The Class Main.</h1>
@@ -19,32 +15,24 @@ import view.ViewFacade;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public abstract class Main implements IBoulderDashModel, IBoulderDashView, IBoulderDashController {
-
-	private static final int	startX	= 5;
-
-	/** The Constant startY. */
-	private static final int	startY	= 0;
+public abstract class Main {
+	private static int LEVELID = 1;
 
 	/**
 	 * The main method.
 	 *
 	 * @param args
 	 *            the arguments
+	 * @throws IOException
+	 * @throws InterruptedException
 	 */
-	public static void main(final String[] args) throws IOException, InterruptedException {
-		final ControllerFacade controllerf = new ControllerFacade(new ViewFacade(), new ModelFacade());
-
-		final IBoulderDashModel model = new BoulderDashModel("map1.txt", startX, startY);
-		final IBoulderDashView view = new BoulderDashView(model.getMap(), model.getPlayer());
-		final IBoulderDashController controller = new BoulderDashController(view, model);
+	public static void main(final String[] args) throws IOException, InterruptedException, SQLException {
+		final IBoulderDashModel model = new BoulderDashModel(Main.LEVELID);
+		final IBoulderDashView view = new BoulderDashView(model.getMap());
+		final BoulderDashController controller = new BoulderDashController(view, model);
 		view.setOrderPerformer(controller.getOrderPerformer());
 
-		try {
-			controller.start();
-		} catch (final SQLException exception) {
-			exception.printStackTrace();
-		}
 		controller.play();
 	}
+
 }

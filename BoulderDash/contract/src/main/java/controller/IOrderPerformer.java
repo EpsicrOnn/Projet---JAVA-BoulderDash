@@ -5,11 +5,13 @@ package controller;
  * The Interface IOrderPerformer.
  */
 public interface IOrderPerformer {
-	
+
 	/**
 	 * Order perform.
 	 *
-	 * @param userOrder the user order
+	 * @param order
+	 *            the user order
 	 */
-	public void orderPerform(final UserOrder userOrder);
+	public void orderPerform(final Order order);
+
 }

@@ -1,5 +1,7 @@
 package view;
 
+import controller.IOrderPerformer;
+
 /**
  * <h1>The Interface IBoulderDashView</h1>
  *
@@ -20,5 +22,9 @@ public interface IBoulderDashView {
 	 * Close all.
 	 */
 	public void closeAll();
+
+	void setOrderPerformer(IOrderPerformer orderPerformer);
+
+	int getView();
 
 }

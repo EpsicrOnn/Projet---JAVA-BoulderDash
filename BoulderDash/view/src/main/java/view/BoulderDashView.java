@@ -2,96 +2,294 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
-import java.util.Observable;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import controller.IOrderPerformer;
-import mobile.IMobile;
-import model.IBoulderDashModel;
+import controller.Order;
+import model.IElement;
 import model.IMap;
+import model.IMobile;
 import showboard.BoardFrame;
 
+// TODO: Auto-generated Javadoc
+
 /**
- * <h1>The Class BoulderDashView</h1>
+ * <h1>The Class ViewFacade provides a facade of the View component.</h1>
  *
- * @author Vincent VALLET
- * @about This class will manage the View.
+ * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @version 1.0
  */
+public class BoulderDashView implements IBoulderDashView, Runnable, KeyListener {
 
-public class BoulderDashView implements IBoulderDashView, Runnable {
+	/** The Constant squareSize. */
+	private static final int squareSize = 100;
 
-	/** The Constant width of the board. */
-	public final int				width;
+	/** The boulder view. */
+	private static int boulderView = 10;
 
-	/** The Constant height of the board. */
-	public final int				height;
+	/** The view. */
+	public int view;
 
-	/** The initial frame size. */
-	private static final int		defaultFrameSize	= 700;
+	/** The order performer. */
+	private IOrderPerformer orderPerformer;
 
-	/** The graphics builder. */
-	private final GraphicsBuilder	graphicsBuilder;
+	/** The map. */
+	private IMap map;
 
-	/** The event performer. */
-	private final EventPerformer	eventPerformer;
+	/** The close view. */
+	private Rectangle closeView;
 
-	/** The observable. */
-	private final Observable		observable;
-
-	/** The game frame. */
-	private BoardFrame				boardFrame;
-
-	/**
-	 * The Constant closeView is the cadre of the board displayed in the close
-	 * view frame.
-	 */
-	private static final Rectangle	playerView			= new Rectangle(5, 5, 9, 9);
+	/** The objects. */
+	private ArrayList<IElement> objects;
 
 	/**
 	 * Instantiates a new boulder dash view.
 	 *
-	 * @param orderPerformer
-	 *            the order performer
-	 * @param boulderdashModel
-	 *            the boulderdash model
-	 * @param observable
-	 *            the observable
+	 * @param map
+	 *            the map
+	 * @param iMobile
+	 * @param miner
+	 *            the miner
+	 * @param objects
+	 *            the objects
+	 * @throws IOException
 	 */
-	public BoulderDashView(final IOrderPerformer orderPerformer, final IBoulderDashModel boulderdashModel,
-	        final Observable observable) {
+	public BoulderDashView(final IMap map) throws IOException {
+		final ArrayList<IElement> mobiles = new ArrayList<IElement>();
 
-
-	{
-		this.observable = observable;
-		this.graphicsBuilder = new GraphicsBuilder(Map);
-		this.eventPerformer = new EventPerformer(orderPerformer);
+		this.setMap(map);
+		// this.getMiner().getPosition();
+		/*-this.setCloseView(new Rectangle(this.getMiner().getX(), this.getMiner().getY(), BoulderDashView.boulderView,
+		        BoulderDashView.boulderView));*/
+		this.setCloseView(new Rectangle(0, 0, BoulderDashView.boulderView, BoulderDashView.boulderView));
 		SwingUtilities.invokeLater(this);
-	}
-	 public final void frameConfigure(final BoardFrame frame) {
-	 }
-	 
 
+	}
+
+	public BoulderDashView(final IMap map, IMobile iMobile) throws IOException {
+		final ArrayList<IElement> mobiles = new ArrayList<IElement>();
+
+		this.setMap(map);
+		// this.getMiner().getPosition();
+		/*-this.setCloseView(new Rectangle(this.getMiner().getX(), this.getMiner().getY(), BoulderDashView.boulderView,
+		        BoulderDashView.boulderView));*/
+		this.setCloseView(new Rectangle(0, 0, BoulderDashView.boulderView, BoulderDashView.boulderView));
+		SwingUtilities.invokeLater(this);
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see view.IView#displayMessage(java.lang.String)
+	 */
+	/* this method will be used for display the "game over" message */
+	@Override
+	public final void displayMessage(final String message) {
+		JOptionPane.showMessageDialog(null, message);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Runnable#run()
+	 */
+	/*
+	 * the method will display on the screen the different element who constite
+	 * the game
+	 */
 	@Override
 	public void run() {
-		this.boardFrame = new BoardFrame("BoulderDash", this.eventPerformer, this.graphicsBuilder, this.observable);
-		final BoardFrame framePlayerView = new BoardFrame("Player view");
-		this.width = this.Map.getWidth();
-		this.height = this.Map.getHeight();
-		framePlayerView.setDimension(new Dimension(this.width, this.height));
-		framePlayerView.setDisplayFrame(playerView);
-		framePlayerView.setSize(defaultFrameSize, defaultFrameSize);
-		this.frameConfigure(framePlayerView);
+		final BoardFrame boardFrame = new BoardFrame("GAME");
+		boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
+		boardFrame.setDisplayFrame(this.closeView);
+		boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
+		boardFrame.setHeightLooped(true);
+		boardFrame.addKeyListener(this);
+		boardFrame.setFocusable(true);
+		boardFrame.setFocusTraversalKeysEnabled(false);
+		for (int x = 0; x < this.getMap().getWidth(); x++) {
+			for (int y = 0; y < this.getMap().getHeight(); y++) {
+				System.out.print(this.map.getOnTheMapXY(x, y).getSprite().getDatabaseIDImage());
+				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
+			}
+			System.out.println("");
+		}
+		for (final IMobile element : this.getMap().getMobiles()) {
+			boardFrame.addPawn(element);
+		}
+		this.getMap().getObservable().addObserver(boardFrame.getObserver());
+		boardFrame.setVisible(true);
 	}
 
+	/*
+	 * public void show(final int yStart, final int xStart) { for (int view = 0;
+	 * view < this.getMap().getHeight(); view++) { for (int x = 0; x <
+	 * this.getMap().getWidth(); x++) {
+	 *
+	 * } }
+	 *
+	 * }
+	 */
+
+	/**
+	 * Key code to user order.
+	 *
+	 * @param keyCode
+	 *            the key code
+	 * @return the user order
+	 */
+	private static Order keyCodeToUserOrder(final int keyCode) {
+		Order userOrder;
+		switch (keyCode) {
+		case KeyEvent.VK_RIGHT:
+			userOrder = Order.RIGHT;
+			break;
+		case KeyEvent.VK_LEFT:
+			userOrder = Order.LEFT;
+		case KeyEvent.VK_UP:
+			userOrder = Order.UP;
+			break;
+		case KeyEvent.VK_DOWN:
+			userOrder = Order.DOWN;
+		default:
+			userOrder = Order.NOP;
+			break;
+		}
+		return userOrder;
+	}
+
+	public void followPlayer() {
+		this.closeView = new Rectangle(this.getMap().getPlayer().getX(), this.getMap().getPlayer().getY());
+	}
+
+	/**
+	 * Gets the view.
+	 *
+	 * @return the view
+	 */
 	@Override
-	public void displayMessage(final String message) {
-		JOptionPane.showMessageDialog(null, message);
+	public int getView() {
+		return this.view;
+	}
+
+	/**
+	 * Sets the view.
+	 *
+	 * @param view
+	 *            the new view
+	 */
+	public void setView(final int view) {
+		this.view = view;
+	}
+
+	/**
+	 * Gets the order performer.
+	 *
+	 * @return the order performer
+	 */
+	public IOrderPerformer getOrderPerformer() {
+		return this.orderPerformer;
+	}
+
+	/**
+	 * Sets the order performer.
+	 *
+	 * @param orderPerformer
+	 *            the new order performer
+	 */
+	@Override
+	public void setOrderPerformer(final IOrderPerformer orderPerformer) {
+		this.orderPerformer = orderPerformer;
+	}
+
+	/**
+	 * Gets the map.
+	 *
+	 * @return the map
+	 */
+	public IMap getMap() {
+		return this.map;
+	}
+
+	/**
+	 * Sets the map.
+	 *
+	 * @param map
+	 *            the new map
+	 * @throws IOException
+	 */
+	public void setMap(final IMap map) throws IOException {
+		this.map = map;
+		/*
+		 * for (int x = 0; x < this.getMap().getWidth(); x++) { for (int y = 0;
+		 * y < this.getMap().getWidth(); y++) { this.getMap().getOnTheMapXY(x,
+		 * y).getSprite().loadImage(); } }
+		 */
+	}
+
+	/**
+	 * Gets the close view.
+	 *
+	 * @return the close view
+	 */
+	public Rectangle getCloseView() {
+		return this.closeView;
+	}
+
+	/**
+	 * Sets the close view.
+	 *
+	 * @param closeView
+	 *            the new close view
+	 */
+	public void setCloseView(final Rectangle closeView) {
+		this.closeView = closeView;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyPressed(final KeyEvent e) {
+		this.getOrderPerformer().orderPerform(BoulderDashView.keyCodeToUserOrder(e.getKeyCode()));
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyTyped(final KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyReleased(final KeyEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void closeAll() {
-		this.boardFrame.dispose();
+		// TODO Auto-generated method stub
+
 	}
+
 }

@@ -1,16 +1,27 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 public interface IMap {
+	public int getHeight();
 
-	int getWidth();
+	public Observable getObservable();
 
-	int getHeight();
+	public IElement getOnTheMapXY(int x, int y);
 
-	IElement getOnTheMapXY(int x, int y);
+	public int getWidth();
 
-	void setMobileHasChanged();
+	public void setMobileHasChanged();
 
-	Observable getObservable();
+	public IMobile getMobileXY(int x, int y);
+
+	public int getDiamondCounter();
+
+	public void setDiamondCounter(final int diamondCounter);
+
+	public IMobile getPlayer();
+
+	public ArrayList<IMobile> getMobiles();
+
 }

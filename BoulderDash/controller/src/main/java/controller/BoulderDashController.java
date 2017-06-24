@@ -16,18 +16,18 @@ public class BoulderDashController implements IOrderPerformer, IBoulderDashModel
 
 	/** The view system. */
 
-	private IView					boulderdashView;
+	private IView boulderdashView;
 
 	/** The stack order. */
-	private Order					stackOrder;
+	private Order stackOrder;
 
 	/** The time sleep. */
-	private static int				TIME_SLEEP	= 30;
+	private static int TIME_SLEEP = 30;
 	/** The view. */
-	private final IBoulderDashView	view;
+	private final IBoulderDashView view;
 
 	/** The model. */
-	private final IBoulderDashModel	model;
+	private final IBoulderDashModel model;
 
 	/**
 	 * Instantiates a new controller facade.
@@ -183,6 +183,16 @@ public class BoulderDashController implements IOrderPerformer, IBoulderDashModel
 	public IMobile getMobile() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public IOrderPerformer getOrderPerformer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void start() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

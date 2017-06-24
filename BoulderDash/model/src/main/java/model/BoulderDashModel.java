@@ -7,7 +7,7 @@ import mobile.Player;
 /**
  * <h1>The Class InsaneVehiclesModel.</h1>
  */
-public abstract class BoulderDashModel implements IBoulderDashModel {
+public class BoulderDashModel implements IBoulderDashModel {
 
 	/** The road. */
 	private IMap map;
@@ -27,10 +27,22 @@ public abstract class BoulderDashModel implements IBoulderDashModel {
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
+	  public BoulderDashModel(final int level) {
+	        System.out.println("cc2");
+	        this.setMap(new Map(level));
+
 	public BoulderDashModel(final String fileName, final int myVehicleStartX, final int myVehicleStartY)
 			throws IOException {
 		this.setMap(new Map(fileName));
 		this.setPlayer(new Player(myVehicleStartX, myVehicleStartY, this.getMap()));
+	}
+
+	public List<FillingMap> getAllPositionsById(final int levelID) throws SQLException {
+		return DAO.getMapFilledByID(levelID);
+	}
+
+	public GamingMap getLevelByID(final int levelID) throws SQLException {
+		return DAO.getLevelByID(levelID);
 	}
 
 	/*
@@ -72,6 +84,9 @@ public abstract class BoulderDashModel implements IBoulderDashModel {
 	private void setPlayer(final IMobile palyer) {
 		this.player = this.player;
 	}
+
+	@Override
+
 }
 //
 // Lol

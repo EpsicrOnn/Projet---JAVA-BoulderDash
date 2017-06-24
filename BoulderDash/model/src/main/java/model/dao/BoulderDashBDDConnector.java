@@ -1,4 +1,3 @@
-
 package model.dao;
 
 import java.sql.Connection;
@@ -25,21 +24,7 @@ final class BoulderDashBDDConnector {
 	private static String password = "";
 
 	/** The url. */
-	private static String url = "jdbc:mysql://localhost/boulderdasht?useSSL=false&serverTimezone=UTC";
-
-	/** The connection. */
-	private Connection connection;
-
-	/** The statement. */
-	private Statement statement;
-
-	/**
-	 * Instantiates a new boulder dash BDD connector.
-	 */
-	public BoulderDashBDDConnector() {
-		this.connection = null;
-		this.statement = null;
-	}
+	private static String url = "jdbc:mysql://localhost/boulderdashr?useSSL=false&serverTimezone=UTC";
 
 	/**
 	 * Gets the single instance of BoulderDashBDDConnector.
@@ -63,24 +48,17 @@ final class BoulderDashBDDConnector {
 		BoulderDashBDDConnector.instance = instance;
 	}
 
+	/** The connection. */
+	private Connection connection;
+
+	/** The statement. */
+	private Statement statement;
+
 	/**
-	 * Open.
-	 *
-	 * @return true, if successful
+	 * Instantiates a new boulder dash BDD connector.
 	 */
-	public boolean open() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			this.connection = DriverManager.getConnection(url, user, password);
-			this.statement = this.connection.createStatement();
-		} catch (final SQLException e) {
-			e.printStackTrace();
-			return false;
-		} catch (final ClassNotFoundException e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+	private BoulderDashBDDConnector() {
+		this.open();
 	}
 
 	/**
@@ -100,22 +78,6 @@ final class BoulderDashBDDConnector {
 	}
 
 	/**
-	 * Prepare call.
-	 *
-	 * @param query
-	 *            the query
-	 * @return the java.sql. callable statement
-	 */
-	public java.sql.CallableStatement prepareCall(final String query) {
-		try {
-			return this.getConnection().prepareCall(query);
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	/**
 	 * Execute update.
 	 *
 	 * @param query
@@ -124,11 +86,11 @@ final class BoulderDashBDDConnector {
 	 */
 	public int executeUpdate(final String query) {
 		try {
-			return this.statement.executeUpdate(query);
+			return this.statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-		return -1;
+		return 0;
 	}
 
 	/**
@@ -138,6 +100,50 @@ final class BoulderDashBDDConnector {
 	 */
 	public Connection getConnection() {
 		return this.connection;
+	}
+
+	/**
+	 * Gets the statement.
+	 *
+	 * @return the statement
+	 */
+	public Statement getStatement() {
+		return this.statement;
+	}
+
+	/**
+	 * Open.
+	 *
+	 * @return true, if successful
+	 */
+	private boolean open() {
+		try {
+			this.connection = DriverManager.getConnection(BoulderDashBDDConnector.url, BoulderDashBDDConnector.user,
+					BoulderDashBDDConnector.password);
+			this.statement = this.connection.createStatement();
+			return true;
+		} catch (final SQLException exception) {
+			exception.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * Prepare call.
+	 *
+	 * @param query
+	 *            the query
+	 * @return the java.sql. callable statement
+	 */
+	public java.sql.CallableStatement prepareCall(final String query) {
+		// query is the name of the query we need to call, send from the
+		// ExampleDAO like in getExampleByName
+		try {
+			return this.getConnection().prepareCall(query);
+		} catch (final SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
@@ -151,15 +157,6 @@ final class BoulderDashBDDConnector {
 	}
 
 	/**
-	 * Gets the statement.
-	 *
-	 * @return the statement
-	 */
-	public Statement getStatement() {
-		return this.statement;
-	}
-
-	/**
 	 * Sets the statement.
 	 *
 	 * @param statement
@@ -167,14 +164,6 @@ final class BoulderDashBDDConnector {
 	 */
 	public void setStatement(final Statement statement) {
 		this.statement = statement;
-	}
-
-	public void close() {
-		try {
-			this.connection.close();
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 }
