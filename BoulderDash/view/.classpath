@@ -22,8 +22,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-
-	<classpathentry kind="lib" path="C:/Users/Vincent/Downloads/showboard-master.zip"/>
-
+	<classpathentry kind="lib" path="C:/Users/Riadjy/Desktop/showboard.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Riadjy/Desktop/showboard.doc.jar!/doc"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

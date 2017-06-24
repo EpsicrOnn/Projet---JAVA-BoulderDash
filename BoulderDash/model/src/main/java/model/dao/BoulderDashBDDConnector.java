@@ -25,7 +25,7 @@ final class BoulderDashBDDConnector {
 	private static String password = "";
 
 	/** The url. */
-	private static String url = "jdbc:mysql://localhost/boulderdashr?useSSL=false&serverTimezone=UTC";
+	private static String url = "jdbc:mysql://localhost/boulderdashy?useSSL=false&serverTimezone=UTC";
 
 	/**
 	 * Gets the single instance of BoulderDashBDDConnector.

@@ -1,8 +1,11 @@
 package model;
 
+import java.awt.List;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import mobile.Player;
+import model.dao.DAO;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -22,16 +25,19 @@ public class BoulderDashModel implements IBoulderDashModel {
 	 * @param level the level
 	 */
 	  public BoulderDashModel(final int level) {
-	        System.out.println("cc2");
 	        this.setMap(new Map(level));
 
 	/**
 	 * Instantiates a new boulder dash model.
 	 *
-	 * @param fileName the file name
-	 * @param myVehicleStartX the my vehicle start X
-	 * @param myVehicleStartY the my vehicle start Y
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @param fileName
+	 *            the file name
+	 * @param myVehicleStartX
+	 *            the my vehicle start X
+	 * @param myVehicleStartY
+	 *            the my vehicle start Y
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public BoulderDashModel(final String fileName, final int myVehicleStartX, final int myVehicleStartY)
 			throws IOException {
@@ -42,22 +48,26 @@ public class BoulderDashModel implements IBoulderDashModel {
 	/**
 	 * Gets the all positions by id.
 	 *
-	 * @param levelID the level ID
+	 * @param levelID
+	 *            the level ID
 	 * @return the all positions by id
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
-	public List<FillingMap> getAllPositionsById(final int levelID) throws SQLException {
+	public List<FillingTab> getAllPositionsById(final int levelID) throws SQLException {
 		return DAO.getMapFilledByID(levelID);
 	}
 
 	/**
 	 * Gets the level by ID.
 	 *
-	 * @param levelID the level ID
+	 * @param levelID
+	 *            the level ID
 	 * @return the level by ID
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
-	public GamingMap getLevelByID(final int levelID) throws SQLException {
+	public MapTab getLevelID(final int levelID) throws SQLException {
 		return DAO.getLevelByID(levelID);
 	}
 
@@ -74,7 +84,8 @@ public class BoulderDashModel implements IBoulderDashModel {
 	/**
 	 * Sets the road.
 	 *
-	 * @param map the new map
+	 * @param map
+	 *            the new map
 	 */
 	private void setMap(final IMap map) {
 		this.map = map;
@@ -93,13 +104,18 @@ public class BoulderDashModel implements IBoulderDashModel {
 	/**
 	 * Sets the my vehicle.
 	 *
-	 * @param palyer the new player
+	 * @param palyer
+	 *            the new player
 	 */
 	private void setPlayer(final IMobile palyer) {
 		this.player = this.player;
 	}
 
 	@Override
+	public IMobile getMobile() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
 //

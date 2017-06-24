@@ -1,153 +1,126 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
-import motionless.MotionlessElementFactory;
+import model.dao.DAO;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Map.
- */
 public class Map extends Observable implements IMap {
 
-	/** The mobiles. */
-	private ArrayList<IMobile> mobiles;
-	
-	/** The width. */
 	private int width;
-	
-	/** The height. */
 	private int height;
-	
-	/** The on the map. */
-	private IElement[][] onTheMap;
+	private int levelID;
+	private IElement onTheMap[][];
+	private ArrayList<IMobile> mobiles;
+	private int diamondCounter;
+	private IMobile miner;
+	private IMobile mobile;
 
-	/**
-	 * Instantiates a new map.
-	 *
-	 * @param fileName the file name
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	Map(final String fileName) throws IOException {
-		super();
-		this.loadFile(fileName);
-	}
-
-	/**
-	 * Load file.
-	 *
-	 * @param fileName the file name
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	private void loadFile(final String fileName) throws IOException {
-		final BufferedReader buffer = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
-		String line;
-		int y = 0;
-		line = buffer.readLine();
-		this.setWidth(Integer.parseInt(line));
-		line = buffer.readLine();
-		this.setHeight(Integer.parseInt(line));
-		this.onTheMap = new IElement[this.getWidth()][this.getHeight()];
-		line = buffer.readLine();
-		while (line != null) {
-			for (int x = 0; x < line.toCharArray().length; x++) {
-				this.setOnTheMapXY(MotionlessElementFactory.getFromFileSymbol(line.toCharArray()[x]), x, y);
-			}
-			line = buffer.readLine();
-			y++;
+	public Map(final int levelID) {
+		this.mobiles = new ArrayList<IMobile>();
+		this.setLevelID(levelID);
+		try {
+			this.loadLevel();
+		} catch (final SQLException e) {
+			e.printStackTrace();
 		}
-		buffer.close();
 	}
 
-	/* (non-Javadoc)
-	 * @see model.IMap#getWidth()
-	 */
 	@Override
-	public final int getWidth() {
-		return this.width;
+	public int getDiamondCounter() {
+		return this.diamondCounter;
 	}
 
-	/**
-	 * Sets the width.
-	 *
-	 * @param width the new width
-	 */
-	private void setWidth(final int width) {
-		this.width = width;
-	}
-
-	/* (non-Javadoc)
-	 * @see model.IMap#getHeight()
-	 */
 	@Override
-	public final int getHeight() {
+	public int getHeight() {
 		return this.height;
 	}
 
-	/**
-	 * Sets the height.
-	 *
-	 * @param height the new height
-	 */
-	private void setHeight(final int height) {
-		this.height = height;
+	public int getLevelID() {
+		return this.levelID;
 	}
 
-	/* (non-Javadoc)
-	 * @see model.IMap#getOnTheMapXY(int, int)
-	 */
 	@Override
-	public final IElement getOnTheMapXY(final int x, final int y) {
-		return this.onTheMap[x][y];
+	public IMobile getMobileXY(final int x, final int y) {
+		return this.mobile;
 	}
 
-	/**
-	 * Sets the on the map XY.
-	 *
-	 * @param element the element
-	 * @param x the x
-	 * @param y the y
-	 */
-	private void setOnTheMapXY(final IElement element, final int x, final int y) {
-		this.onTheMap[x][y] = element;
-	}
-
-	/* (non-Javadoc)
-	 * @see model.IMap#setMobileHasChanged()
-	 */
-	@Override
-	public final void setMobileHasChanged() {
-		this.setChanged();
-		this.notifyObservers();
-	}
-
-	/* (non-Javadoc)
-	 * @see model.IMap#getObservable()
-	 */
 	@Override
 	public Observable getObservable() {
 		return this;
 	}
 
-	/* (non-Javadoc)
-	 * @see model.IMap#getMobiles()
-	 */
+	@Override
+	public IElement getOnTheMapXY(final int x, final int y) {
+		return this.onTheMap[y][x];
+	}
+
+	@Override
+	public int getWidth() {
+		return this.width;
+	}
+
+	public void loadLevel() throws SQLException {
+		final MapTab gamingMap = DAO.getLevelByID(this.levelID);
+		final int consoleMapTable[][] = new int[gamingMap.getHeight()][gamingMap.getWidth()];
+		this.setHeight(gamingMap.getHeight());
+		this.setWidth(gamingMap.getWidth());
+		this.onTheMap = new IElement[this.getHeight()][this.getWidth()];
+		final List<FillingTab> objects = DAO.getMapFilledByID(gamingMap.getLevelID());
+		for (final FillingTab fillingMap : objects) {
+			consoleMapTable[fillingMap.getY()][fillingMap.getX()] = fillingMap.getObjectType();
+		}
+	}
+
+	@Override
+	public void setDiamondCounter(final int diamondCounter) {
+		this.diamondCounter = diamondCounter;
+	}
+
+	private void setHeight(final int height) {
+		this.height = height;
+	}
+
+	public void setLevelID(final int levelID) {
+		this.levelID = levelID;
+	}
+
+	@Override
+	public void setMobileHasChanged() {
+		this.setChanged();
+		this.notifyObservers();
+		// Met en place les changements qui sont dans le package mobile
+		// Notifie l'Observer des changements
+
+	}
+
+	private void setOnTheMapXY(final IElement element, final int x, final int y) {
+		this.onTheMap[y][x] = element;
+		// met l'élément dans le tableau de Map [x][y]
+	}
+
+	private void setWidth(final int width) {
+		this.width = width;
+	}
+
+	@Override
+	public IMobile getPlayer() {
+		return this.getPlayer();
+	}
+
+	public void setMiner(final IMobile miner) {
+		this.miner = miner;
+	}
+
 	@Override
 	public ArrayList<IMobile> getMobiles() {
 		return this.mobiles;
 	}
 
-	/**
-	 * Sets the mobiles.
-	 *
-	 * @param mobiles the new mobiles
-	 */
 	public void setMobiles(final ArrayList<IMobile> mobiles) {
 		this.mobiles = mobiles;
 	}
+
 }
