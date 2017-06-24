@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class BddInsertion {
 
 	/** The url. */
-	private static String URL = "jdbc:mysql://localhost/boulderdash?autoReconnect=true&useSSL=false";
+	private static String URL = "jdbc:mysql://localhost/boulderdashr?autoReconnect=true&useSSL=false";
 
 	/** The login. */
 	private static String LOGIN = "root";
